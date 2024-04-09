@@ -18,8 +18,22 @@
     <ClCompile Include="PRO-PP-snake.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SnakeNode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SnakeNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
