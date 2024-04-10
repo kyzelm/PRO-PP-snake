@@ -15,10 +15,11 @@
 int main() {
 
 	ALLEGRO_DISPLAY* display = NULL;
-	ALLEGRO_FONT* font = NULL;
+	ALLEGRO_FONT* font = NULL, *mediumFont = NULL, * smallFont = NULL;
 	ALLEGRO_EVENT_QUEUE* event_queue = NULL;
 	ALLEGRO_KEYBOARD_STATE keyState;
 	ALLEGRO_TIMER* timer = NULL;
+	ALLEGRO_BITMAP* background = NULL;
 
 	al_init();
 	al_init_font_addon();
@@ -30,7 +31,11 @@ int main() {
 	al_set_window_title(display, "Snake");
 	al_set_display_icon(display, al_load_bitmap("apple.png"));
 
+	background = al_load_bitmap("main-background.png");
 	font = al_load_ttf_font("Silkscreen-Regular.ttf", 64, 0);
+	mediumFont = al_load_ttf_font("Silkscreen-Regular.ttf", 48, 0);
+	smallFont = al_load_ttf_font("Silkscreen-Regular.ttf", 32, 0);
+
 	event_queue = al_create_event_queue();
 	timer = al_create_timer(1.0 / 60.0);
 
@@ -56,6 +61,7 @@ int main() {
 		if (event.type == ALLEGRO_EVENT_TIMER) {
 			al_flip_display();
 			al_clear_to_color(al_map_rgb(0, 0, 0));
+			al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0, al_get_display_width(display), al_get_display_height(display), 0);
 			
 			if (interfaceController->gameState == 0) {
 				al_draw_text(font, al_map_rgb(255, 255, 255), 600, 350, ALLEGRO_ALIGN_CENTER, interfaceController->menu[interfaceController->menuMode][interfaceController->menuCursor]);
@@ -82,10 +88,13 @@ int main() {
 					}
 				}
 
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), 50, 40, ALLEGRO_ALIGN_LEFT, "Pause");
+				al_draw_text(smallFont, al_map_rgb(240, 240, 240), 50, 90, ALLEGRO_ALIGN_LEFT, "[ESC]");
+				al_draw_textf(font, al_map_rgb(144, 144, 144), al_get_display_width(display) / 2.0, 100, ALLEGRO_ALIGN_CENTER, "Score: %d", interfaceController->snakeLength - 3);
 				printMap(map, interfaceController->prevSnakeDirection);
 				
 				if (interfaceController->isPaused) {
-					al_draw_text(font, al_map_rgb(255, 255, 255), 600, 400, ALLEGRO_ALIGN_CENTER, "Pauza");
+					al_draw_text(font, al_map_rgb(255, 255, 255), 600, 400, ALLEGRO_ALIGN_CENTER, "Pause");
 				}
 				else {
 					interfaceController->timerCounter++;
@@ -102,7 +111,7 @@ int main() {
 								interfaceController->gameState = 3;
 								interfaceController->gameOverState = 1;
 							}
-							if (interfaceController->snakeLength % 5 == 0)
+							if (interfaceController->snakeLength % 10 == 0)
 								interfaceController->snakeSpeed += interfaceController->snakeStep;
 						}
 						interfaceController->timerCounter = 0;
@@ -149,11 +158,13 @@ int main() {
 						switch (interfaceController->menuCursor) {
 						case 0:
 							interfaceController->snakeSpeed = 1.0;
+							interfaceController->snakeStep = 0.1;
 							interfaceController->gameState = 2;
 							interfaceController->menuMode = 0;
 							break;
 						case 1:
 							interfaceController->snakeSpeed = 2.0;
+							interfaceController->snakeStep = 0.05;
 							interfaceController->gameState = 2;
 							interfaceController->menuMode = 0;
 							break;
@@ -198,6 +209,7 @@ int main() {
 	
 	destroyMap(map);
 	destroyInterfaceController(interfaceController);
+	al_destroy_bitmap(background);
 	al_destroy_display(display);
 	al_destroy_font(font);
 	al_destroy_timer(timer);

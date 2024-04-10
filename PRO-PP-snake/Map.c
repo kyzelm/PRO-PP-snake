@@ -22,7 +22,7 @@ Map* createMap(int width, int height, ALLEGRO_DISPLAY* display) {
 	map->displayHeight = al_get_display_height(display);
 	map->apple[0] = -1;
 	map->apple[1] = -1;
-	map->boardImage = al_load_bitmap("board.png");
+	map->boardImage = al_load_bitmap("board-shadow.png");
 	map->appleImage = al_load_bitmap("apple.png");
 	map->snakeHeadImage = al_load_bitmap("snake-head.png");
 	map->snakeTailImage = al_load_bitmap("snake-tail.png");
@@ -101,7 +101,7 @@ int updateMap(Map* map, int direction) {
 }
 
 void printMap(Map* map, int direction) {
-	al_draw_bitmap(map->boardImage, map->displayWidth / 2 - 380, map->displayHeight / 2 - 240, 0);
+	al_draw_bitmap(map->boardImage, map->displayWidth / 2 - 440, map->displayHeight / 2 - 240, 0);
 
 	for (int y = 0; y < map->height; y++) {
 		for (int x = 0; x < map->width; x++) {
@@ -109,13 +109,13 @@ void printMap(Map* map, int direction) {
 			case 0:
 				break;
 			case 1:
-				al_draw_rotated_bitmap(map->snakeHeadImage, 18, 18, map->displayWidth / 2 - 320 + x * 40, map->displayHeight / 2 - 180 + y * 40, direction * 1.5708, 0);
+				al_draw_rotated_bitmap(map->snakeHeadImage, 18, 18, map->displayWidth / 2 - 360 + x * 40, map->displayHeight / 2 - 160 + y * 40, direction * 1.5708, 0);
 				break;
 			case 2:
-				al_draw_bitmap(map->snakeTailImage, map->displayWidth / 2 - 338 + x * 40, map->displayHeight / 2 - 198 + y * 40, 0);
+				al_draw_bitmap(map->snakeTailImage, map->displayWidth / 2 - 378 + x * 40, map->displayHeight / 2 - 178 + y * 40, 0);
 				break;
 			case 10:
-				al_draw_bitmap(map->appleImage, map->displayWidth / 2 - 338 + x * 40, map->displayHeight / 2 - 198 + y * 40, 0);
+				al_draw_bitmap(map->appleImage, map->displayWidth / 2 - 378 + x * 40, map->displayHeight / 2 - 178 + y * 40, 0);
 				break;
 			default:
 				break;
