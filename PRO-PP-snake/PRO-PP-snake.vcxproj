@@ -151,6 +151,15 @@
     <ClInclude Include="InterfaceController.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="C:\Users\damio\Desktop\apple.png" />
+    <Image Include="C:\Users\damio\Desktop\board.png" />
+    <Image Include="C:\Users\damio\Desktop\snake-head.png" />
+    <Image Include="C:\Users\damio\Desktop\snake-tail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="C:\Users\damio\Desktop\Silkscreen-Regular.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\AllegroDeps.1.14.0\build\native\AllegroDeps.targets" Condition="Exists('..\packages\AllegroDeps.1.14.0\build\native\AllegroDeps.targets')" />

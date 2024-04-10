@@ -45,4 +45,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="C:\Users\damio\Desktop\apple.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="C:\Users\damio\Desktop\board.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="C:\Users\damio\Desktop\snake-head.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="C:\Users\damio\Desktop\snake-tail.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="C:\Users\damio\Desktop\Silkscreen-Regular.ttf" />
+  </ItemGroup>
 </Project>

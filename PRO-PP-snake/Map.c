@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <allegro5/allegro_font.h>
+
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_image.h>
 
 #include "Utils.h"
 
@@ -9,16 +11,23 @@
 
 SnakeNode* snakeHead = NULL;
 
-Map* createMap(int width, int height) {
+Map* createMap(int width, int height, ALLEGRO_DISPLAY* display) {
 	Map* map = (Map*)malloc(sizeof(Map));
 	if (map == NULL) {
 		return NULL;
 	}
 	map->width = width;
 	map->height = height;
+	map->displayWidth = al_get_display_width(display);
+	map->displayHeight = al_get_display_height(display);
 	map->apple[0] = -1;
 	map->apple[1] = -1;
+	map->boardImage = al_load_bitmap("board.png");
+	map->appleImage = al_load_bitmap("apple.png");
+	map->snakeHeadImage = al_load_bitmap("snake-head.png");
+	map->snakeTailImage = al_load_bitmap("snake-tail.png");
 
+	snakeHead = newSnakeHead(snakeHead, width / 2, height / 2 + 1);
 	snakeHead = newSnakeHead(snakeHead, width / 2, height / 2);
 
 	randomizeApple(map);
@@ -91,27 +100,26 @@ int updateMap(Map* map, int direction) {
 	}
 }
 
-void printMap(Map* map, ALLEGRO_FONT* font) {
+void printMap(Map* map, int direction) {
+	al_draw_bitmap(map->boardImage, map->displayWidth / 2 - 380, map->displayHeight / 2 - 240, 0);
+
 	for (int y = 0; y < map->height; y++) {
 		for (int x = 0; x < map->width; x++) {
-			char character = ' ';
 			switch (map->mapTable[y][x]) {
 			case 0:
-				character = '-';
 				break;
 			case 1:
-				character = 'H';
+				al_draw_rotated_bitmap(map->snakeHeadImage, 18, 18, map->displayWidth / 2 - 320 + x * 40, map->displayHeight / 2 - 180 + y * 40, direction * 1.5708, 0);
 				break;
 			case 2:
-				character = 'o';
+				al_draw_bitmap(map->snakeTailImage, map->displayWidth / 2 - 338 + x * 40, map->displayHeight / 2 - 198 + y * 40, 0);
 				break;
 			case 10:
-				character = 'X';
+				al_draw_bitmap(map->appleImage, map->displayWidth / 2 - 338 + x * 40, map->displayHeight / 2 - 198 + y * 40, 0);
 				break;
 			default:
 				break;
 			}
-			al_draw_textf(font, al_map_rgb(255, 255, 255), (SCREEN_WIDTH / 2.0 - 50.0 * map->width / 2.0) + 50 * x, (SCREEN_HEIGHT / 2.0 - 50.0 * map->height / 2.0) + 50 * y, ALLEGRO_ALIGN_CENTER, "%c", character);
 		}
 		printf("\n");
 	}
@@ -119,8 +127,17 @@ void printMap(Map* map, ALLEGRO_FONT* font) {
 
 void resetSnake(Map* map) {
 	snakeHead = deleteSnake(snakeHead);
+	snakeHead = newSnakeHead(snakeHead, map->width / 2, map->height / 2 + 1);
 	snakeHead = newSnakeHead(snakeHead, map->width / 2, map->height / 2);
 
 	randomizeApple(map);
 	updateMap(map, 0);
+}
+
+void destroyMap(Map* map) {
+	al_destroy_bitmap(map->appleImage);
+	al_destroy_bitmap(map->snakeHeadImage);
+	al_destroy_bitmap(map->snakeTailImage);
+	free(map);
+	snakeHead = deleteSnake(snakeHead);
 }

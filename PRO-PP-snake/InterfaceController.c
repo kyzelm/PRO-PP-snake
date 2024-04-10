@@ -6,8 +6,8 @@ InterfaceController* createInterfaceController() {
 	interfaceController->isPaused = 0;
 	interfaceController->gameOverState = 0;
 	interfaceController->snakeSpeed = 1.0;
-	interfaceController->snakeStep = 0.2;
-	interfaceController->snakeLength = 2;
+	interfaceController->snakeStep = 0.1;
+	interfaceController->snakeLength = 3;
 	interfaceController->snakeDirection = 0;
 	interfaceController->timerCounter = 0;
 	interfaceController->prevSnakeDirection = 0;
