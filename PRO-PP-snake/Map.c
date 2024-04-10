@@ -1,10 +1,11 @@
-#include "Map.h"
-#include "SnakeNode.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <allegro5/allegro_font.h>
 
+#include "Utils.h"
+
+#include "Map.h"
+#include "SnakeNode.h"
 
 SnakeNode* snakeHead = NULL;
 
@@ -96,10 +97,10 @@ void printMap(Map* map, ALLEGRO_FONT* font) {
 			char character = ' ';
 			switch (map->mapTable[y][x]) {
 			case 0:
-				character = '.';
+				character = '-';
 				break;
 			case 1:
-				character = 'O';
+				character = 'H';
 				break;
 			case 2:
 				character = 'o';
@@ -110,7 +111,7 @@ void printMap(Map* map, ALLEGRO_FONT* font) {
 			default:
 				break;
 			}
-			al_draw_textf(font, al_map_rgb(255, 255, 255), (1200.0 / 2.0 - 30.0 * map->width / 2.0) + 30 * x, (800.0 / 2.0 - 30.0 * map->height / 2.0) + 30 * y, ALLEGRO_ALIGN_CENTER, "%c", character);
+			al_draw_textf(font, al_map_rgb(255, 255, 255), (SCREEN_WIDTH / 2.0 - 50.0 * map->width / 2.0) + 50 * x, (SCREEN_HEIGHT / 2.0 - 50.0 * map->height / 2.0) + 50 * y, ALLEGRO_ALIGN_CENTER, "%c", character);
 		}
 		printf("\n");
 	}
