@@ -5,6 +5,7 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_image.h>
 
 #include "Utils.h"
 
@@ -22,10 +23,12 @@ int main() {
 	al_init();
 	al_init_font_addon();
 	al_init_ttf_addon();
+	al_init_image_addon();
 
-
+	al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
 	display = al_create_display(SCREEN_WIDTH, SCREEN_HEIGHT);
 	al_set_window_title(display, "Snake");
+	al_set_display_icon(display, al_load_bitmap("apple.png"));
 
 	font = al_load_ttf_font("Silkscreen-Regular.ttf", 64, 0);
 	event_queue = al_create_event_queue();
@@ -40,7 +43,7 @@ int main() {
 	al_start_timer(timer);
 
 	InterfaceController* interfaceController = createInterfaceController();
-	Map* map = createMap(20, 10);
+	Map* map = createMap(19, 14, display);
 
 	while (interfaceController->gameState != 4) {
 		ALLEGRO_EVENT event;
@@ -79,7 +82,7 @@ int main() {
 					}
 				}
 
-				printMap(map, font);
+				printMap(map, interfaceController->prevSnakeDirection);
 				
 				if (interfaceController->isPaused) {
 					al_draw_text(font, al_map_rgb(255, 255, 255), 600, 400, ALLEGRO_ALIGN_CENTER, "Pauza");
@@ -181,7 +184,8 @@ int main() {
 			else if (interfaceController->gameState == 3) {
 				if (event.keyboard.keycode == ALLEGRO_KEY_ENTER) {
 					interfaceController->snakeDirection = 0;
-					interfaceController->snakeLength = 2;
+					interfaceController->prevSnakeDirection = 0;
+					interfaceController->snakeLength = 3;
 					interfaceController->timerCounter = 0;
 					interfaceController->gameOverState = 0;
 					interfaceController->isPaused = 0;
@@ -192,6 +196,7 @@ int main() {
 		}
 	}
 	
+	destroyMap(map);
 	destroyInterfaceController(interfaceController);
 	al_destroy_display(display);
 	al_destroy_font(font);
