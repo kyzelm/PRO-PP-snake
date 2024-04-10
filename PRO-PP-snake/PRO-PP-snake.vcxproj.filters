@@ -24,6 +24,9 @@
     <ClCompile Include="Map.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InterfaceController.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -33,6 +36,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -75,8 +75,10 @@
     <Allegro_AddonImage>true</Allegro_AddonImage>
     <Allegro_AddonAudio>true</Allegro_AddonAudio>
     <Allegro_AddonFont>true</Allegro_AddonFont>
-    <Allegro_AddonColor>true</Allegro_AddonColor>
+    <Allegro_AddonColor>
+    </Allegro_AddonColor>
     <Allegro_AddonTTF>true</Allegro_AddonTTF>
+    <Allegro_AddonAcodec>true</Allegro_AddonAcodec>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -86,7 +88,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -138,6 +140,7 @@
     <ClCompile Include="Map.c" />
     <ClCompile Include="PRO-PP-snake.c" />
     <ClCompile Include="SnakeNode.c" />
+    <ClCompile Include="InterfaceController.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -145,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="Map.h" />
     <ClInclude Include="SnakeNode.h" />
+    <ClInclude Include="InterfaceController.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
