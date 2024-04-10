@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
@@ -29,10 +30,11 @@ int main() {
 	al_register_event_source(event_queue, al_get_display_event_source(display));
 	al_register_event_source(event_queue, al_get_timer_event_source(timer));
 
+	srand((unsigned int)time(NULL));
 	al_start_timer(timer);
 
 	InterfaceController* interfaceController = createInterfaceController();
-	Map* map = createMap(25, 25);
+	Map* map = createMap(20, 15);
 
 	while (interfaceController->gameState != 4) {
 		ALLEGRO_EVENT event;
@@ -47,13 +49,16 @@ int main() {
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 			if (interfaceController->gameState == 0)
 				al_draw_text(font, al_map_rgb(255, 255, 255), 600, 400, ALLEGRO_ALIGN_CENTER, interfaceController->menu[interfaceController->menuSelection]);
-			if (interfaceController->gameState == 1){
+			
+			else if (interfaceController->gameState == 1){
 				al_draw_text(font, al_map_rgb(255, 255, 255), 600, 400, ALLEGRO_ALIGN_CENTER, "Sterowanie");
 				al_draw_text(font, al_map_rgb(255, 255, 255), 600, 500, ALLEGRO_ALIGN_CENTER, "[Enter]");
 			}
-			if (interfaceController->gameState == 2) {
+			
+			else if (interfaceController->gameState == 2) {
 				al_draw_textf(font, al_map_rgb(255, 255, 255), 50, 50, 0, "%d", interfaceController->snakeLength);
 				printMap(map, font);
+				
 				if (interfaceController->isPaused) {
 					al_draw_text(font, al_map_rgb(255, 255, 255), 600, 400, ALLEGRO_ALIGN_CENTER, "Pauza");
 				}
@@ -79,7 +84,8 @@ int main() {
 					}
 				}
 			}
-			if (interfaceController->gameState == 3) {
+			
+			else if (interfaceController->gameState == 3) {
 				if (interfaceController->gameOverState == 0)
 					al_draw_text(font, al_map_rgb(255, 255, 255), 600, 400, ALLEGRO_ALIGN_CENTER, "Koniec gry: przegrana");
 				else if (interfaceController->gameOverState == 1)
@@ -91,26 +97,25 @@ int main() {
 			if (interfaceController->gameState == 0) {
 				switch (event.keyboard.keycode) {
 				case ALLEGRO_KEY_LEFT:
-					if (interfaceController->menuSelection > 0)
-						interfaceController->menuSelection = interfaceController->menuSelection - 1;
-					break;
+					if (interfaceController->menuSelection > 0) interfaceController->menuSelection = interfaceController->menuSelection - 1;
 				case ALLEGRO_KEY_RIGHT:
-					if (interfaceController->menuSelection < 2)
-						interfaceController->menuSelection = interfaceController->menuSelection + 1;
-					break;
+					if (interfaceController->menuSelection < 2) interfaceController->menuSelection = interfaceController->menuSelection + 1;
 				case ALLEGRO_KEY_ENTER:
-					if (interfaceController->menuSelection == 0) {
+					switch (interfaceController->menuSelection)
+					{
+					case 0:
 						interfaceController->gameState = 2;
-					}
-					else if (interfaceController->menuSelection == 1) {
+						break;
+					case 1:
 						interfaceController->gameState = 1;
-					}
-					else if (interfaceController->menuSelection == 2) {
+						break;
+					case 2:
 						interfaceController->gameState = 4;
+						break;
 					}
-					break;
 				}
 			}
+			
 			else if (interfaceController->gameState == 1) {
 				switch (event.keyboard.keycode) {
 				case ALLEGRO_KEY_ENTER:
@@ -118,40 +123,42 @@ int main() {
 					break;
 				}
 			}
+			
 			else if (interfaceController->gameState == 2) {
-				switch (event.keyboard.keycode) {
-				case ALLEGRO_KEY_UP:
-					if (interfaceController->snakeDirection != 2 && !interfaceController->isSnakeDirectionChanged && !interfaceController->isPaused) {
-						interfaceController->snakeDirection = 0;
-						interfaceController->isSnakeDirectionChanged = 1;
+				if (!interfaceController->isSnakeDirectionChanged && !interfaceController->isPaused) {
+					switch (event.keyboard.keycode) {
+					case ALLEGRO_KEY_UP:
+						if (interfaceController->snakeDirection != 2) {
+							interfaceController->snakeDirection = 0;
+							interfaceController->isSnakeDirectionChanged = 1;
+						}
+						break;
+					case ALLEGRO_KEY_RIGHT:
+						if (interfaceController->snakeDirection != 3) {
+							interfaceController->snakeDirection = 1;
+							interfaceController->isSnakeDirectionChanged = 1;
+						}
+						break;
+					case ALLEGRO_KEY_DOWN:
+						if (interfaceController->snakeDirection != 0) {
+							interfaceController->snakeDirection = 2;
+							interfaceController->isSnakeDirectionChanged = 1;
+						}
+						break;
+					case ALLEGRO_KEY_LEFT:
+						if (interfaceController->snakeDirection != 1) {
+							interfaceController->snakeDirection = 3;
+							interfaceController->isSnakeDirectionChanged = 1;
+						}
+						break;
 					}
-					break;
-				case ALLEGRO_KEY_RIGHT:
-					if (interfaceController->snakeDirection != 3 && !interfaceController->isSnakeDirectionChanged && !interfaceController->isPaused) {
-						interfaceController->snakeDirection = 1;
-						interfaceController->isSnakeDirectionChanged = 1;
-					}
-					break;
-				case ALLEGRO_KEY_DOWN:
-					if (interfaceController->snakeDirection != 0 && !interfaceController->isSnakeDirectionChanged && !interfaceController->isPaused) {
-						interfaceController->snakeDirection = 2;
-						interfaceController->isSnakeDirectionChanged = 1;
-					}
-					break;
-				case ALLEGRO_KEY_LEFT:
-					if (interfaceController->snakeDirection != 1 && !interfaceController->isSnakeDirectionChanged && !interfaceController->isPaused) {
-						interfaceController->snakeDirection = 3;
-						interfaceController->isSnakeDirectionChanged = 1;
-					}
-					break;
-				case ALLEGRO_KEY_ESCAPE:
-					interfaceController->isPaused = !interfaceController->isPaused;
-					break;
 				}
+
+				if(event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) interfaceController->isPaused = !interfaceController->isPaused;
 			}
+			
 			else if (interfaceController->gameState == 3) {
-				switch (event.keyboard.keycode) {
-				case ALLEGRO_KEY_ENTER:
+				if (event.keyboard.keycode == ALLEGRO_KEY_ENTER) {
 					interfaceController->snakeDirection = 0;
 					interfaceController->snakeSpeed = 1.0;
 					interfaceController->snakeLength = 1;
@@ -160,7 +167,6 @@ int main() {
 					interfaceController->isPaused = 0;
 					interfaceController->gameState = 0;
 					resetSnake(map);
-					break;
 				}
 			}
 		}

@@ -7,3 +7,4 @@ typedef struct SnakeNode {
 
 SnakeNode* newSnakeHead(SnakeNode* snakeHeadNode, int x, int y);
 void deleteSnakeLastNode(SnakeNode* snakeHeadNode);
+SnakeNode* deleteSnake(SnakeNode* snakeHeadNode);

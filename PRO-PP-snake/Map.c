@@ -3,8 +3,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include <allegro5/allegro_font.h>
+
 
 SnakeNode* snakeHead = NULL;
 
@@ -18,14 +18,7 @@ Map* createMap(int width, int height) {
 	map->apple[0] = -1;
 	map->apple[1] = -1;
 
-	SnakeNode* newSnakeNode = (SnakeNode*)malloc(sizeof(SnakeNode));
-	if (newSnakeNode == NULL) {
-		return NULL;
-	}
-	newSnakeNode->x = width / 2;
-	newSnakeNode->y = height / 2;
-	newSnakeNode->next = NULL;
-	snakeHead = newSnakeNode;
+	snakeHead = newSnakeHead(snakeHead, width / 2, height / 2);
 
 	randomizeApple(map);
 	updateMap(map, 0);
@@ -34,9 +27,8 @@ Map* createMap(int width, int height) {
 }
 
 void randomizeApple(Map* map) {
-	srand((unsigned int)time(NULL));
-	map->apple[0] = (unsigned int) rand() % map->width;
-	map->apple[1] = (unsigned int) rand() % map->height;
+	map->apple[0] = rand() % map->width;
+	map->apple[1] = rand() % map->height;
 }
 
 int updateMap(Map* map, int direction) {
@@ -118,28 +110,15 @@ void printMap(Map* map, ALLEGRO_FONT* font) {
 			default:
 				break;
 			}
-			al_draw_textf(font, al_map_rgb(255, 255, 255), 225.0 + (750.0 / map->width) * x, 25.0 + (750.0 / map->height) * y, ALLEGRO_ALIGN_CENTER, "%c", character);
+			al_draw_textf(font, al_map_rgb(255, 255, 255), (1200.0 / 2.0 - 30.0 * map->width / 2.0) + 30 * x, (800.0 / 2.0 - 30.0 * map->height / 2.0) + 30 * y, ALLEGRO_ALIGN_CENTER, "%c", character);
 		}
 		printf("\n");
 	}
 }
 
 void resetSnake(Map* map) {
-	SnakeNode* currentSnakeNode = snakeHead;
-	while (currentSnakeNode != NULL) {
-		SnakeNode* nextSnakeNode = currentSnakeNode->next;
-		free(currentSnakeNode);
-		currentSnakeNode = nextSnakeNode;
-	}
-
-	SnakeNode* newSnakeNode = (SnakeNode*)malloc(sizeof(SnakeNode));
-	if (newSnakeNode == NULL) {
-		return;
-	}
-	newSnakeNode->x = map->width / 2;
-	newSnakeNode->y = map->height / 2;
-	newSnakeNode->next = NULL;
-	snakeHead = newSnakeNode;
+	snakeHead = deleteSnake(snakeHead);
+	snakeHead = newSnakeHead(snakeHead, map->width / 2, map->height / 2);
 
 	randomizeApple(map);
 	updateMap(map, 0);

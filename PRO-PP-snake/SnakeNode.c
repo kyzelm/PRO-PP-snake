@@ -21,3 +21,12 @@ void deleteSnakeLastNode(SnakeNode* snakeHeadNode) {
 	free(snakeHeadNode->next);
 	snakeHeadNode->next = NULL;
 }
+
+SnakeNode* deleteSnake(SnakeNode* snakeHeadNode) {
+	while (snakeHeadNode != NULL) {
+		SnakeNode* next = snakeHeadNode->next;
+		free(snakeHeadNode);
+		snakeHeadNode = next;
+	}
+	return NULL;
+}
