@@ -76,8 +76,8 @@ int main() {
 			}
 
 			else if (interfaceController->gameState == 1){
-				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), 50, 40, ALLEGRO_ALIGN_LEFT, "Back");
-				al_draw_text(smallFont, al_map_rgb(240, 240, 240), 50, 90, ALLEGRO_ALIGN_LEFT, "[ESC]");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP, ALLEGRO_ALIGN_LEFT, "Back");
+				al_draw_text(smallFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP + 50, ALLEGRO_ALIGN_LEFT, "[ESC]");
 				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0 - 150, ALLEGRO_ALIGN_LEFT, "Arrows / WASD");
 				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 + 500, al_get_display_height(display) / 2.0 - 150, ALLEGRO_ALIGN_RIGHT, "Movement");
 				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0 - 50, ALLEGRO_ALIGN_LEFT, "ESC");
@@ -105,11 +105,11 @@ int main() {
 					}
 				}
 
-				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), 50, 40, ALLEGRO_ALIGN_LEFT, (interfaceController->isPaused) ? "Play" : "Pause");
-				al_draw_text(smallFont, al_map_rgb(240, 240, 240), 50, 90, ALLEGRO_ALIGN_LEFT, "[ESC]");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP, ALLEGRO_ALIGN_LEFT, (interfaceController->isPaused) ? "Play" : "Pause");
+				al_draw_text(smallFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP + 50, ALLEGRO_ALIGN_LEFT, "[ESC]");
 				if (interfaceController->isPaused){
-					al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) - 50, 40, ALLEGRO_ALIGN_RIGHT, "Exit game");
-					al_draw_text(smallFont, al_map_rgb(240, 240, 240), al_get_display_width(display) - 50, 90, ALLEGRO_ALIGN_RIGHT, "[R]");
+					al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) - SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP, ALLEGRO_ALIGN_RIGHT, "Exit game");
+					al_draw_text(smallFont, al_map_rgb(240, 240, 240), al_get_display_width(display) - SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP + 50, ALLEGRO_ALIGN_RIGHT, "[R]");
 				}
 				al_draw_textf(font, al_map_rgb(144, 144, 144), al_get_display_width(display) / 2.0, 100, ALLEGRO_ALIGN_CENTER, "Score: %d", interfaceController->snakeLength - 3);
 				printMap(map, interfaceController->prevSnakeDirection);
@@ -138,8 +138,8 @@ int main() {
 			}
 			
 			else if (interfaceController->gameState == 3) {
-				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), 50, 40, ALLEGRO_ALIGN_LEFT, "Menu");
-				al_draw_text(smallFont, al_map_rgb(240, 240, 240), 50, 90, ALLEGRO_ALIGN_LEFT, "[ENTER]");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP, ALLEGRO_ALIGN_LEFT, "Menu");
+				al_draw_text(smallFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP + 50, ALLEGRO_ALIGN_LEFT, "[ENTER]");
 				al_draw_text(hugeFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0, al_get_display_height(display) / 2.0 - 150, ALLEGRO_ALIGN_CENTER, interfaceController->gameOverState == 0 ? "You Lose!" : "You Win!");
 				al_draw_textf(mediumFont, al_map_rgb(144, 144, 144), al_get_display_width(display) / 2.0, al_get_display_height(display) / 2.0 + 50, ALLEGRO_ALIGN_CENTER, "> Score: %d <", interfaceController->snakeLength - 3);
 			}
@@ -188,18 +188,17 @@ int main() {
 							interfaceController->snakeSpeed = 1.0;
 							interfaceController->snakeStep = 0.1;
 							interfaceController->gameState = 2;
-							interfaceController->menuMode = 0;
 							break;
 						case 1:
 							interfaceController->snakeSpeed = 2.0;
 							interfaceController->snakeStep = 0.05;
 							interfaceController->gameState = 2;
-							interfaceController->menuMode = 0;
 							break;
 						case 2:
-							interfaceController->menuMode = 0;
 							break;
 						}
+						
+						interfaceController->menuMode = 0;
 						break;
 					}
 
