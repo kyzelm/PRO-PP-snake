@@ -88,15 +88,16 @@ int main() {
 					}
 				}
 
-				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), 50, 40, ALLEGRO_ALIGN_LEFT, "Pause");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), 50, 40, ALLEGRO_ALIGN_LEFT, (interfaceController->isPaused) ? "Play" : "Pause");
 				al_draw_text(smallFont, al_map_rgb(240, 240, 240), 50, 90, ALLEGRO_ALIGN_LEFT, "[ESC]");
+				if (interfaceController->isPaused){
+					al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) - 50, 40, ALLEGRO_ALIGN_RIGHT, "Menu");
+					al_draw_text(smallFont, al_map_rgb(240, 240, 240), al_get_display_width(display) - 50, 90, ALLEGRO_ALIGN_RIGHT, "[R]");
+				}
 				al_draw_textf(font, al_map_rgb(144, 144, 144), al_get_display_width(display) / 2.0, 100, ALLEGRO_ALIGN_CENTER, "Score: %d", interfaceController->snakeLength - 3);
 				printMap(map, interfaceController->prevSnakeDirection);
-				
-				if (interfaceController->isPaused) {
-					al_draw_text(font, al_map_rgb(255, 255, 255), 600, 400, ALLEGRO_ALIGN_CENTER, "Pause");
-				}
-				else {
+
+				if (!interfaceController->isPaused) {
 					interfaceController->timerCounter++;
 					if (interfaceController->timerCounter > 20.0 / interfaceController->snakeSpeed) {
 						int result = updateMap(map, interfaceController->snakeDirection);
@@ -155,6 +156,14 @@ int main() {
 						break;
 
 					case 1:
+						interfaceController->snakeDirection = 0;
+						interfaceController->prevSnakeDirection = 0;
+						interfaceController->snakeLength = 3;
+						interfaceController->timerCounter = 0;
+						interfaceController->gameOverState = 0;
+						interfaceController->isPaused = 0;
+						resetSnake(map);
+
 						switch (interfaceController->menuCursor) {
 						case 0:
 							interfaceController->snakeSpeed = 1.0;
@@ -182,7 +191,7 @@ int main() {
 			
 			else if (interfaceController->gameState == 1) {
 				switch (event.keyboard.keycode) {
-				case ALLEGRO_KEY_ENTER:
+				case ALLEGRO_KEY_ESCAPE:
 					interfaceController->gameState = 0;
 					break;
 				}
@@ -190,18 +199,12 @@ int main() {
 			
 			else if (interfaceController->gameState == 2) {
 				if(event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) interfaceController->isPaused = !interfaceController->isPaused;
+				if(event.keyboard.keycode == ALLEGRO_KEY_R) interfaceController->gameState = 0;
 			}
 			
 			else if (interfaceController->gameState == 3) {
 				if (event.keyboard.keycode == ALLEGRO_KEY_ENTER) {
-					interfaceController->snakeDirection = 0;
-					interfaceController->prevSnakeDirection = 0;
-					interfaceController->snakeLength = 3;
-					interfaceController->timerCounter = 0;
-					interfaceController->gameOverState = 0;
-					interfaceController->isPaused = 0;
 					interfaceController->gameState = 0;
-					resetSnake(map);
 				}
 			}
 		}
