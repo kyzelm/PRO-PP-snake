@@ -155,7 +155,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="SnakeNode.h" />
     <ClInclude Include="InterfaceController.h" />
-    <ClInclude Include="Utils.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="apple.png" />

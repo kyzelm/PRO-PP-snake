@@ -4,8 +4,6 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 
-#include "Utils.h"
-
 #include "Map.h"
 #include "SnakeNode.h"
 

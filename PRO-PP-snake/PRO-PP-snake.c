@@ -15,11 +15,11 @@
 int main() {
 
 	ALLEGRO_DISPLAY* display = NULL;
-	ALLEGRO_FONT* font = NULL, *mediumFont = NULL, * smallFont = NULL;
+	ALLEGRO_FONT* hugeFont = NULL, * font = NULL, * mediumFont = NULL, * smallFont = NULL;
 	ALLEGRO_EVENT_QUEUE* event_queue = NULL;
 	ALLEGRO_KEYBOARD_STATE keyState;
 	ALLEGRO_TIMER* timer = NULL;
-	ALLEGRO_BITMAP* background = NULL;
+	ALLEGRO_BITMAP* background = NULL, * title = NULL;
 
 	al_init();
 	al_init_font_addon();
@@ -32,6 +32,8 @@ int main() {
 	al_set_display_icon(display, al_load_bitmap("apple.png"));
 
 	background = al_load_bitmap("main-background.png");
+	title = al_load_bitmap("title.png");
+	hugeFont = al_load_ttf_font("Silkscreen-Regular.ttf", 128, 0);
 	font = al_load_ttf_font("Silkscreen-Regular.ttf", 64, 0);
 	mediumFont = al_load_ttf_font("Silkscreen-Regular.ttf", 48, 0);
 	smallFont = al_load_ttf_font("Silkscreen-Regular.ttf", 32, 0);
@@ -64,26 +66,41 @@ int main() {
 			al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0, al_get_display_width(display), al_get_display_height(display), 0);
 			
 			if (interfaceController->gameState == 0) {
-				al_draw_text(font, al_map_rgb(255, 255, 255), 600, 350, ALLEGRO_ALIGN_CENTER, interfaceController->menu[interfaceController->menuMode][interfaceController->menuCursor]);
+				al_draw_bitmap(title, al_get_display_width(display) / 2.0 - al_get_bitmap_width(title) / 2.0, 150, 0);
+				for (int i = 0; i < 3; i++) {
+					if (interfaceController->menuCursor == i) 
+						al_draw_textf(font, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0, al_get_display_height(display) / 2.0 - 20 + 150 * i, ALLEGRO_ALIGN_CENTER, "> %s <", interfaceController->menu[interfaceController->menuMode][i]);
+					else
+						al_draw_textf(font, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0, al_get_display_height(display) / 2.0 - 20 + 150 * i, ALLEGRO_ALIGN_CENTER, interfaceController->menu[interfaceController->menuMode][i]);
+				}
 			}
 
 			else if (interfaceController->gameState == 1){
-				al_draw_text(font, al_map_rgb(255, 255, 255), 600, 400, ALLEGRO_ALIGN_CENTER, "Controls");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), 50, 40, ALLEGRO_ALIGN_LEFT, "Back");
+				al_draw_text(smallFont, al_map_rgb(240, 240, 240), 50, 90, ALLEGRO_ALIGN_LEFT, "[ESC]");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0 - 150, ALLEGRO_ALIGN_LEFT, "Arrows / WASD");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 + 500, al_get_display_height(display) / 2.0 - 150, ALLEGRO_ALIGN_RIGHT, "Movement");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0 - 50, ALLEGRO_ALIGN_LEFT, "ESC");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 + 500, al_get_display_height(display) / 2.0 - 50, ALLEGRO_ALIGN_RIGHT, "Pause / Play");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0 + 50, ALLEGRO_ALIGN_LEFT, "R");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 + 500, al_get_display_height(display) / 2.0 + 50, ALLEGRO_ALIGN_RIGHT, "Exit game (on pause)");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0 + 150, ALLEGRO_ALIGN_LEFT, "Enter");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 + 500, al_get_display_height(display) / 2.0 + 150, ALLEGRO_ALIGN_RIGHT, "Accept");
 			}
 			
 			else if (interfaceController->gameState == 2) {
 				if (!interfaceController->isPaused) {
 					al_get_keyboard_state(&keyState);
-					if (al_key_down(&keyState, ALLEGRO_KEY_LEFT) && interfaceController->prevSnakeDirection != 1) {
+					if ((al_key_down(&keyState, ALLEGRO_KEY_LEFT) || al_key_down(&keyState, ALLEGRO_KEY_A)) && interfaceController->prevSnakeDirection != 1) {
 						interfaceController->snakeDirection = 3;
 					}
-					else if (al_key_down(&keyState, ALLEGRO_KEY_UP) && interfaceController->prevSnakeDirection != 2) {
+					else if ((al_key_down(&keyState, ALLEGRO_KEY_UP) || al_key_down(&keyState, ALLEGRO_KEY_W)) && interfaceController->prevSnakeDirection != 2) {
 						interfaceController->snakeDirection = 0;
 					}
-					else if (al_key_down(&keyState, ALLEGRO_KEY_RIGHT) && interfaceController->prevSnakeDirection != 3) {
+					else if ((al_key_down(&keyState, ALLEGRO_KEY_RIGHT) || al_key_down(&keyState, ALLEGRO_KEY_D)) && interfaceController->prevSnakeDirection != 3) {
 						interfaceController->snakeDirection = 1;
 					}
-					else if (al_key_down(&keyState, ALLEGRO_KEY_DOWN) && interfaceController->prevSnakeDirection != 0) {
+					else if ((al_key_down(&keyState, ALLEGRO_KEY_DOWN) || al_key_down(&keyState, ALLEGRO_KEY_S)) && interfaceController->prevSnakeDirection != 0) {
 						interfaceController->snakeDirection = 2;
 					}
 				}
@@ -91,7 +108,7 @@ int main() {
 				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), 50, 40, ALLEGRO_ALIGN_LEFT, (interfaceController->isPaused) ? "Play" : "Pause");
 				al_draw_text(smallFont, al_map_rgb(240, 240, 240), 50, 90, ALLEGRO_ALIGN_LEFT, "[ESC]");
 				if (interfaceController->isPaused){
-					al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) - 50, 40, ALLEGRO_ALIGN_RIGHT, "Menu");
+					al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) - 50, 40, ALLEGRO_ALIGN_RIGHT, "Exit game");
 					al_draw_text(smallFont, al_map_rgb(240, 240, 240), al_get_display_width(display) - 50, 90, ALLEGRO_ALIGN_RIGHT, "[R]");
 				}
 				al_draw_textf(font, al_map_rgb(144, 144, 144), al_get_display_width(display) / 2.0, 100, ALLEGRO_ALIGN_CENTER, "Score: %d", interfaceController->snakeLength - 3);
@@ -108,7 +125,7 @@ int main() {
 						}
 						else if (result == 1) {
 							interfaceController->snakeLength++;
-							if (interfaceController->snakeLength == map->width * map->height) {
+							if (interfaceController->snakeLength >= map->width * map->height) {
 								interfaceController->gameState = 3;
 								interfaceController->gameOverState = 1;
 							}
@@ -121,24 +138,26 @@ int main() {
 			}
 			
 			else if (interfaceController->gameState == 3) {
-				if (interfaceController->gameOverState == 0)
-					al_draw_text(font, al_map_rgb(255, 255, 255), 600, 400, ALLEGRO_ALIGN_CENTER, "You Lose");
-				else if (interfaceController->gameOverState == 1)
-					al_draw_text(font, al_map_rgb(255, 255, 255), 600, 400, ALLEGRO_ALIGN_CENTER, "Winner!");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), 50, 40, ALLEGRO_ALIGN_LEFT, "Menu");
+				al_draw_text(smallFont, al_map_rgb(240, 240, 240), 50, 90, ALLEGRO_ALIGN_LEFT, "[ENTER]");
+				al_draw_text(hugeFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0, al_get_display_height(display) / 2.0 - 150, ALLEGRO_ALIGN_CENTER, interfaceController->gameOverState == 0 ? "You Lose!" : "You Win!");
+				al_draw_textf(mediumFont, al_map_rgb(144, 144, 144), al_get_display_width(display) / 2.0, al_get_display_height(display) / 2.0 + 50, ALLEGRO_ALIGN_CENTER, "> Score: %d <", interfaceController->snakeLength - 3);
 			}
 		}
 
 		if (event.type == ALLEGRO_EVENT_KEY_DOWN) {
 			if (interfaceController->gameState == 0) {
 				switch (event.keyboard.keycode) {
-				case ALLEGRO_KEY_LEFT:
+				case ALLEGRO_KEY_UP:
+				case ALLEGRO_KEY_W:
 					if (interfaceController->menuCursor > 0) interfaceController->menuCursor = interfaceController->menuCursor - 1;
 					break;
-				
-				case ALLEGRO_KEY_RIGHT:
+
+				case ALLEGRO_KEY_DOWN:
+				case ALLEGRO_KEY_S:
 					if (interfaceController->menuCursor < 2) interfaceController->menuCursor = interfaceController->menuCursor + 1;
 					break;
-				
+
 				case ALLEGRO_KEY_ENTER:
 					switch (interfaceController->menuMode) {
 					case 0:
@@ -185,6 +204,13 @@ int main() {
 					}
 
 					interfaceController->menuCursor = 0;
+					break;
+
+				case ALLEGRO_KEY_ESCAPE:
+					if (interfaceController->menuMode == 1) {
+						interfaceController->menuCursor = 0;
+						interfaceController->menuMode = 0;
+					}
 					break;
 				}
 			}
