@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['updatemap_0',['updateMap',['../d0/dec/_map_8c.html#a9aaa412b8e193bec5b669263cea2d5b4',1,'updateMap(Map *map, int direction):&#160;Map.c'],['../d3/d63/_map_8h.html#a9aaa412b8e193bec5b669263cea2d5b4',1,'updateMap(Map *map, int direction):&#160;Map.c']]],
-  ['utils_2eh_1',['utils.h',['../d5/d60/utils_8h.html',1,'']]]
+  ['technologies_0',['Technologies',['../index.html#tech_sec',1,'']]],
+  ['the_20game_20project_20for_20podstawy_20programowania_202_20module_1',['Snake The Game - Project for &quot;Podstawy Programowania 2&quot; module',['../index.html',1,'']]],
+  ['timercounter_2',['timerCounter',['../d8/dfd/struct_interface_controller.html#a1fb2fb06ba2c8cc453d71805842b74d9',1,'InterfaceController']]]
 ];

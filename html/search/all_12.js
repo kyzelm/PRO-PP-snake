@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y_0',['y',['../dd/d1a/struct_snake_node.html#a0a2f84ed7838f07779ae24c5a9086d33',1,'SnakeNode']]]
+  ['x_0',['x',['../dd/d1a/struct_snake_node.html#a6150e0515f7202e2fb518f7206ed97dc',1,'SnakeNode']]]
 ];

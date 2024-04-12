@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x_0',['x',['../dd/d1a/struct_snake_node.html#a6150e0515f7202e2fb518f7206ed97dc',1,'SnakeNode']]]
+  ['width_0',['width',['../df/d91/struct_map.html#a2474a5474cbff19523a51eb1de01cda4',1,'Map']]]
 ];

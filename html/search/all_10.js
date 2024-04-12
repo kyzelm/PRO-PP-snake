@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['width_0',['width',['../df/d91/struct_map.html#a2474a5474cbff19523a51eb1de01cda4',1,'Map']]]
+  ['updatemap_0',['updateMap',['../d0/dec/_map_8c.html#a9aaa412b8e193bec5b669263cea2d5b4',1,'updateMap(Map *map, int direction):&#160;Map.c'],['../d3/d63/_map_8h.html#a9aaa412b8e193bec5b669263cea2d5b4',1,'updateMap(Map *map, int direction):&#160;Map.c']]],
+  ['utils_2eh_1',['utils.h',['../d5/d60/utils_8h.html',1,'']]]
 ];
