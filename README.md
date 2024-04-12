@@ -8,7 +8,6 @@ The game is written in C using the Allegro 5 library.
 ### Gameplay
 
 Snake is controlled by the arrow keys o WASD keys. The goal of the game is to eat as many apples as possible without hitting the walls or the snake's body.
-The game has a simple menu with the option to start the game, see the highscore list, and exit the game.
 
 <br><br>
 
