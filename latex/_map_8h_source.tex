@@ -1,0 +1,31 @@
+\doxysection{Map.\+h}
+\hypertarget{_map_8h_source}{}\label{_map_8h_source}\index{PRO-\/PP-\/snake/Map.h@{PRO-\/PP-\/snake/Map.h}}
+\mbox{\hyperlink{_map_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************/}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <allegro5/allegro.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_image.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_map}{Map}}\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_map_a2474a5474cbff19523a51eb1de01cda4}{width}};\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_map_ad12fc34ce789bce6c8a05d8a17138534}{height}};\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_map_a79f3fb0fd2c088965288b417421b4e19}{apple}}[2];\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_map_ab52b42d06002cee06ef60246fea9d094}{mapTable}}[30][30];\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_map_ae9c560cbea0e78dc5e2f0cf1973c3704}{displayWidth}};\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_map_a27ce10de06887932c987d5789f93c488}{displayHeight}};\ }
+\DoxyCodeLine{00031\ \ \ \ \ ALLEGRO\_BITMAP*\ \mbox{\hyperlink{struct_map_a86eb13bc6bf18a6ef408d97e40e4540a}{boardImage}};\ }
+\DoxyCodeLine{00032\ \ \ \ \ ALLEGRO\_BITMAP*\ \mbox{\hyperlink{struct_map_a45011ca8ffab684dcf8aa469a8b741ad}{appleImage}};\ }
+\DoxyCodeLine{00033\ \ \ \ \ ALLEGRO\_BITMAP*\ \mbox{\hyperlink{struct_map_a79a88e312f619a23b88d0c34465c23af}{snakeHeadImage}};\ }
+\DoxyCodeLine{00034\ \ \ \ \ ALLEGRO\_BITMAP*\ \mbox{\hyperlink{struct_map_ab25030cfcd8df62407ee8d29130fbe1f}{snakeTailImage}};\ }
+\DoxyCodeLine{00035\ \}\ \mbox{\hyperlink{_map_8h_afdfce14f0d12266a9956f9fe5e4fe1fd}{Map}};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \mbox{\hyperlink{struct_map}{Map}}*\ \mbox{\hyperlink{_map_8h_a3fbc261290b9b7519d7bd5e16c48c02b}{createMap}}(\textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height,\ ALLEGRO\_DISPLAY*\ display);}
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_map_8h_a73737ca23b423a26ca8d5e46adba295d}{randomizeApple}}(\mbox{\hyperlink{struct_map}{Map}}*\ map);}
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_map_8h_a9aaa412b8e193bec5b669263cea2d5b4}{updateMap}}(\mbox{\hyperlink{struct_map}{Map}}*\ map,\ \textcolor{keywordtype}{int}\ direction);}
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_map_8h_a75dbecacd8109a4ec4bd50debe1d6ffc}{printMap}}(\mbox{\hyperlink{struct_map}{Map}}*\ map,\ \textcolor{keywordtype}{int}\ direction);}
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_map_8h_a47ee8f0d0f6ea57436da222ae3169428}{resetSnake}}(\mbox{\hyperlink{struct_map}{Map}}*\ map);}
+\DoxyCodeLine{00042\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_map_8h_a64df896c814cef549bef88fcd20d9a67}{destroyMap}}(\mbox{\hyperlink{struct_map}{Map}}*\ map);}
+
+\end{DoxyCode}

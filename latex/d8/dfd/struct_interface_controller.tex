@@ -1,0 +1,123 @@
+\doxysection{Dokumentacja struktury Interface\+Controller}
+\hypertarget{struct_interface_controller}{}\label{struct_interface_controller}\index{InterfaceController@{InterfaceController}}
+
+
+Interface states controller structure.  
+
+
+
+
+{\ttfamily \#include $<$Interface\+Controller.\+h$>$}
+
+\doxysubsubsection*{Pola danych}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_interface_controller_ab7ad0796d84021de0fd46246b3d5096f}{game\+State}}
+\item 
+int \mbox{\hyperlink{struct_interface_controller_ae94a6d0fee5bb82434df3fdafaec1704}{is\+Paused}}
+\item 
+int \mbox{\hyperlink{struct_interface_controller_ab53cc6e4bbab1052f19d53f04434146e}{game\+Over\+State}}
+\item 
+float \mbox{\hyperlink{struct_interface_controller_a13010aa6a2e43b0f489c7fa9e304cab5}{snake\+Speed}}
+\item 
+float \mbox{\hyperlink{struct_interface_controller_af56930aa692050bfe580474cdfddcc27}{snake\+Step}}
+\item 
+int \mbox{\hyperlink{struct_interface_controller_a29c2280e2196d67230e1a606fd445f60}{snake\+Length}}
+\item 
+int \mbox{\hyperlink{struct_interface_controller_a507f12c1b4f382c430133971b0f5ac23}{snake\+Direction}}
+\item 
+int \mbox{\hyperlink{struct_interface_controller_a6469ac3e7e872b11f8031b72cb4bcc7a}{prev\+Snake\+Direction}}
+\item 
+int \mbox{\hyperlink{struct_interface_controller_a1fb2fb06ba2c8cc453d71805842b74d9}{timer\+Counter}}
+\item 
+int \mbox{\hyperlink{struct_interface_controller_a65d41d4e04ee68c9f9726180492cac03}{menu\+Mode}}
+\item 
+int \mbox{\hyperlink{struct_interface_controller_a76923fcbbdedc091727d76535236442b}{menu\+Cursor}}
+\item 
+char \mbox{\hyperlink{struct_interface_controller_afdcbf3ab22d443aa733171aa2ec9133a}{menu}} \mbox{[}2\mbox{]}\mbox{[}3\mbox{]}\mbox{[}10\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Opis szczegółowy}
+Interface states controller structure. 
+
+Structure contains all the necessary variables to control the game state and the game interface 
+
+\doxysubsection{Dokumentacja pól}
+\Hypertarget{struct_interface_controller_ab53cc6e4bbab1052f19d53f04434146e}\label{struct_interface_controller_ab53cc6e4bbab1052f19d53f04434146e} 
+\index{InterfaceController@{InterfaceController}!gameOverState@{gameOverState}}
+\index{gameOverState@{gameOverState}!InterfaceController@{InterfaceController}}
+\doxysubsubsection{\texorpdfstring{gameOverState}{gameOverState}}
+{\footnotesize\ttfamily int game\+Over\+State}
+
+State determining what type of game over screen is displayed (0 -\/ lose, 1 -\/ win) \Hypertarget{struct_interface_controller_ab7ad0796d84021de0fd46246b3d5096f}\label{struct_interface_controller_ab7ad0796d84021de0fd46246b3d5096f} 
+\index{InterfaceController@{InterfaceController}!gameState@{gameState}}
+\index{gameState@{gameState}!InterfaceController@{InterfaceController}}
+\doxysubsubsection{\texorpdfstring{gameState}{gameState}}
+{\footnotesize\ttfamily int game\+State}
+
+Main state determining what part of the game is currently displayed (0 -\/ menu, 1 -\/ controls, 2 -\/ game, 3 -\/ game over) \Hypertarget{struct_interface_controller_ae94a6d0fee5bb82434df3fdafaec1704}\label{struct_interface_controller_ae94a6d0fee5bb82434df3fdafaec1704} 
+\index{InterfaceController@{InterfaceController}!isPaused@{isPaused}}
+\index{isPaused@{isPaused}!InterfaceController@{InterfaceController}}
+\doxysubsubsection{\texorpdfstring{isPaused}{isPaused}}
+{\footnotesize\ttfamily int is\+Paused}
+
+Flag determining if the game is paused (0 -\/ not paused, 1 -\/ paused) \Hypertarget{struct_interface_controller_afdcbf3ab22d443aa733171aa2ec9133a}\label{struct_interface_controller_afdcbf3ab22d443aa733171aa2ec9133a} 
+\index{InterfaceController@{InterfaceController}!menu@{menu}}
+\index{menu@{menu}!InterfaceController@{InterfaceController}}
+\doxysubsubsection{\texorpdfstring{menu}{menu}}
+{\footnotesize\ttfamily char menu\mbox{[}2\mbox{]}\mbox{[}3\mbox{]}\mbox{[}10\mbox{]}}
+
+Menu options table (2 menus, 3 options in each menu, maximum 10 characters in each option) \Hypertarget{struct_interface_controller_a76923fcbbdedc091727d76535236442b}\label{struct_interface_controller_a76923fcbbdedc091727d76535236442b} 
+\index{InterfaceController@{InterfaceController}!menuCursor@{menuCursor}}
+\index{menuCursor@{menuCursor}!InterfaceController@{InterfaceController}}
+\doxysubsubsection{\texorpdfstring{menuCursor}{menuCursor}}
+{\footnotesize\ttfamily int menu\+Cursor}
+
+Menu cursor position (0 -\/ first option, 1 -\/ second option, 2 -\/ third option) \Hypertarget{struct_interface_controller_a65d41d4e04ee68c9f9726180492cac03}\label{struct_interface_controller_a65d41d4e04ee68c9f9726180492cac03} 
+\index{InterfaceController@{InterfaceController}!menuMode@{menuMode}}
+\index{menuMode@{menuMode}!InterfaceController@{InterfaceController}}
+\doxysubsubsection{\texorpdfstring{menuMode}{menuMode}}
+{\footnotesize\ttfamily int menu\+Mode}
+
+Menu state determining which menu is currently displayed (0 -\/ main menu, 1 -\/ controls menu) \Hypertarget{struct_interface_controller_a6469ac3e7e872b11f8031b72cb4bcc7a}\label{struct_interface_controller_a6469ac3e7e872b11f8031b72cb4bcc7a} 
+\index{InterfaceController@{InterfaceController}!prevSnakeDirection@{prevSnakeDirection}}
+\index{prevSnakeDirection@{prevSnakeDirection}!InterfaceController@{InterfaceController}}
+\doxysubsubsection{\texorpdfstring{prevSnakeDirection}{prevSnakeDirection}}
+{\footnotesize\ttfamily int prev\+Snake\+Direction}
+
+Snake direction from the previous move (0 -\/ up, 1 -\/ right, 2 -\/ down, 3 -\/ left) \Hypertarget{struct_interface_controller_a507f12c1b4f382c430133971b0f5ac23}\label{struct_interface_controller_a507f12c1b4f382c430133971b0f5ac23} 
+\index{InterfaceController@{InterfaceController}!snakeDirection@{snakeDirection}}
+\index{snakeDirection@{snakeDirection}!InterfaceController@{InterfaceController}}
+\doxysubsubsection{\texorpdfstring{snakeDirection}{snakeDirection}}
+{\footnotesize\ttfamily int snake\+Direction}
+
+Snake actual direction (0 -\/ up, 1 -\/ right, 2 -\/ down, 3 -\/ left) \Hypertarget{struct_interface_controller_a29c2280e2196d67230e1a606fd445f60}\label{struct_interface_controller_a29c2280e2196d67230e1a606fd445f60} 
+\index{InterfaceController@{InterfaceController}!snakeLength@{snakeLength}}
+\index{snakeLength@{snakeLength}!InterfaceController@{InterfaceController}}
+\doxysubsubsection{\texorpdfstring{snakeLength}{snakeLength}}
+{\footnotesize\ttfamily int snake\+Length}
+
+Snake length \Hypertarget{struct_interface_controller_a13010aa6a2e43b0f489c7fa9e304cab5}\label{struct_interface_controller_a13010aa6a2e43b0f489c7fa9e304cab5} 
+\index{InterfaceController@{InterfaceController}!snakeSpeed@{snakeSpeed}}
+\index{snakeSpeed@{snakeSpeed}!InterfaceController@{InterfaceController}}
+\doxysubsubsection{\texorpdfstring{snakeSpeed}{snakeSpeed}}
+{\footnotesize\ttfamily float snake\+Speed}
+
+Timer tick multiplier determining the count of ticks between snake moves \Hypertarget{struct_interface_controller_af56930aa692050bfe580474cdfddcc27}\label{struct_interface_controller_af56930aa692050bfe580474cdfddcc27} 
+\index{InterfaceController@{InterfaceController}!snakeStep@{snakeStep}}
+\index{snakeStep@{snakeStep}!InterfaceController@{InterfaceController}}
+\doxysubsubsection{\texorpdfstring{snakeStep}{snakeStep}}
+{\footnotesize\ttfamily float snake\+Step}
+
+Snake speed value modifier \Hypertarget{struct_interface_controller_a1fb2fb06ba2c8cc453d71805842b74d9}\label{struct_interface_controller_a1fb2fb06ba2c8cc453d71805842b74d9} 
+\index{InterfaceController@{InterfaceController}!timerCounter@{timerCounter}}
+\index{timerCounter@{timerCounter}!InterfaceController@{InterfaceController}}
+\doxysubsubsection{\texorpdfstring{timerCounter}{timerCounter}}
+{\footnotesize\ttfamily int timer\+Counter}
+
+Timer counter allowing to control the game speed 
+
+Dokumentacja dla tej struktury została wygenerowana z pliku\+:\begin{DoxyCompactItemize}
+\item 
+PRO-\/\+PP-\/snake/\mbox{\hyperlink{_interface_controller_8h}{Interface\+Controller.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,153 @@
+\doxysection{Dokumentacja pliku PRO-\/\+PP-\/snake/\+Map.h}
+\hypertarget{_map_8h}{}\label{_map_8h}\index{PRO-\/PP-\/snake/Map.h@{PRO-\/PP-\/snake/Map.h}}
+
+
+\doxylink{struct_map}{Map} structure and functions declarations.  
+
+
+{\ttfamily \#include $<$allegro5/allegro.\+h$>$}\newline
+{\ttfamily \#include $<$allegro5/allegro\+\_\+image.\+h$>$}\newline
+\doxysubsubsection*{Struktury danych}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_map}{Map}}
+\begin{DoxyCompactList}\small\item\em Game map structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Definicje typów}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_map_8h_afdfce14f0d12266a9956f9fe5e4fe1fd}\label{_map_8h_afdfce14f0d12266a9956f9fe5e4fe1fd} 
+typedef struct Map {\bfseries Map}
+\begin{DoxyCompactList}\small\item\em Game map structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Funkcje}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_map}{Map}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_map_8h_a3fbc261290b9b7519d7bd5e16c48c02b}{create\+Map}} (int width, int height, ALLEGRO\+\_\+\+DISPLAY \texorpdfstring{$\ast$}{*}display)
+\begin{DoxyCompactList}\small\item\em Create a new map Function creates a new map with given width and height, loads the images of the board, apple, snake head and snake tail. It also creates a snake with two nodes in the middle of the board and randomizes the apple position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_map_8h_a73737ca23b423a26ca8d5e46adba295d}{randomize\+Apple}} (\mbox{\hyperlink{struct_map}{Map}} \texorpdfstring{$\ast$}{*}map)
+\begin{DoxyCompactList}\small\item\em Randomize apple position. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_map_8h_a9aaa412b8e193bec5b669263cea2d5b4}{update\+Map}} (\mbox{\hyperlink{struct_map}{Map}} \texorpdfstring{$\ast$}{*}map, int direction)
+\begin{DoxyCompactList}\small\item\em Update the map with the new snake and apple position. Function updates the map with the new snake and apple position. It also checks if the snake ate the apple, ate itself or went out of bounds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_map_8h_a75dbecacd8109a4ec4bd50debe1d6ffc}{print\+Map}} (\mbox{\hyperlink{struct_map}{Map}} \texorpdfstring{$\ast$}{*}map, int direction)
+\begin{DoxyCompactList}\small\item\em Print the map on the screen. Function prints the map on the screen with the snake and apple images based on the map\+Table values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_map_8h_a47ee8f0d0f6ea57436da222ae3169428}{reset\+Snake}} (\mbox{\hyperlink{struct_map}{Map}} \texorpdfstring{$\ast$}{*}map)
+\begin{DoxyCompactList}\small\item\em Reset the snake position. Function resets the snake position to the middle of the board and randomizes the apple position by deleting the snake and creating a new one. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_map_8h_a64df896c814cef549bef88fcd20d9a67}{destroy\+Map}} (\mbox{\hyperlink{struct_map}{Map}} \texorpdfstring{$\ast$}{*}map)
+\begin{DoxyCompactList}\small\item\em Destroy the map. Function destroys the map by deleting the snake and freeing the memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Opis szczegółowy}
+\doxylink{struct_map}{Map} structure and functions declarations. 
+
+\begin{DoxyAuthor}{Autor}
+Damian Osiński 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Data}
+April 2024 
+\end{DoxyDate}
+
+
+\doxysubsection{Dokumentacja funkcji}
+\Hypertarget{_map_8h_a3fbc261290b9b7519d7bd5e16c48c02b}\label{_map_8h_a3fbc261290b9b7519d7bd5e16c48c02b} 
+\index{Map.h@{Map.h}!createMap@{createMap}}
+\index{createMap@{createMap}!Map.h@{Map.h}}
+\doxysubsubsection{\texorpdfstring{createMap()}{createMap()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_map}{Map}} \texorpdfstring{$\ast$}{*} create\+Map (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height,  }\item[{ALLEGRO\+\_\+\+DISPLAY \texorpdfstring{$\ast$}{*}}]{display }\end{DoxyParamCaption})}
+
+
+
+Create a new map Function creates a new map with given width and height, loads the images of the board, apple, snake head and snake tail. It also creates a snake with two nodes in the middle of the board and randomizes the apple position. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em width} & board width (in tiles) \\
+\hline
+{\em height} & board height (in tiles) \\
+\hline
+{\em display} & pointer to the ALLEGRO\+\_\+\+DISPLAY instance to calculate the position of the board \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Zwraca}
+pointer to the created map 
+\end{DoxyReturn}
+\Hypertarget{_map_8h_a64df896c814cef549bef88fcd20d9a67}\label{_map_8h_a64df896c814cef549bef88fcd20d9a67} 
+\index{Map.h@{Map.h}!destroyMap@{destroyMap}}
+\index{destroyMap@{destroyMap}!Map.h@{Map.h}}
+\doxysubsubsection{\texorpdfstring{destroyMap()}{destroyMap()}}
+{\footnotesize\ttfamily void destroy\+Map (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_map}{Map}} \texorpdfstring{$\ast$}{*}}]{map }\end{DoxyParamCaption})}
+
+
+
+Destroy the map. Function destroys the map by deleting the snake and freeing the memory. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em map} & pointer to the map structure \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_map_8h_a75dbecacd8109a4ec4bd50debe1d6ffc}\label{_map_8h_a75dbecacd8109a4ec4bd50debe1d6ffc} 
+\index{Map.h@{Map.h}!printMap@{printMap}}
+\index{printMap@{printMap}!Map.h@{Map.h}}
+\doxysubsubsection{\texorpdfstring{printMap()}{printMap()}}
+{\footnotesize\ttfamily void print\+Map (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_map}{Map}} \texorpdfstring{$\ast$}{*}}]{map,  }\item[{int}]{direction }\end{DoxyParamCaption})}
+
+
+
+Print the map on the screen. Function prints the map on the screen with the snake and apple images based on the map\+Table values. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em map} & pointer to the map structure \\
+\hline
+{\em direction} & direction of actual snake movement (0 -\/ up, 1 -\/ right, 2 -\/ down, 3 -\/ left), important for the snake head rotation \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_map_8h_a73737ca23b423a26ca8d5e46adba295d}\label{_map_8h_a73737ca23b423a26ca8d5e46adba295d} 
+\index{Map.h@{Map.h}!randomizeApple@{randomizeApple}}
+\index{randomizeApple@{randomizeApple}!Map.h@{Map.h}}
+\doxysubsubsection{\texorpdfstring{randomizeApple()}{randomizeApple()}}
+{\footnotesize\ttfamily void randomize\+Apple (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_map}{Map}} \texorpdfstring{$\ast$}{*}}]{map }\end{DoxyParamCaption})}
+
+
+
+Randomize apple position. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em map} & pointer to the map structure \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_map_8h_a47ee8f0d0f6ea57436da222ae3169428}\label{_map_8h_a47ee8f0d0f6ea57436da222ae3169428} 
+\index{Map.h@{Map.h}!resetSnake@{resetSnake}}
+\index{resetSnake@{resetSnake}!Map.h@{Map.h}}
+\doxysubsubsection{\texorpdfstring{resetSnake()}{resetSnake()}}
+{\footnotesize\ttfamily void reset\+Snake (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_map}{Map}} \texorpdfstring{$\ast$}{*}}]{map }\end{DoxyParamCaption})}
+
+
+
+Reset the snake position. Function resets the snake position to the middle of the board and randomizes the apple position by deleting the snake and creating a new one. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em map} & pointer to the map structure \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_map_8h_a9aaa412b8e193bec5b669263cea2d5b4}\label{_map_8h_a9aaa412b8e193bec5b669263cea2d5b4} 
+\index{Map.h@{Map.h}!updateMap@{updateMap}}
+\index{updateMap@{updateMap}!Map.h@{Map.h}}
+\doxysubsubsection{\texorpdfstring{updateMap()}{updateMap()}}
+{\footnotesize\ttfamily int update\+Map (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_map}{Map}} \texorpdfstring{$\ast$}{*}}]{map,  }\item[{int}]{direction }\end{DoxyParamCaption})}
+
+
+
+Update the map with the new snake and apple position. Function updates the map with the new snake and apple position. It also checks if the snake ate the apple, ate itself or went out of bounds. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em map} & pointer to the map structure \\
+\hline
+{\em direction} & direction of actual snake movement (0 -\/ up, 1 -\/ right, 2 -\/ down, 3 -\/ left) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Zwraca}
+snake movement result (0 -\/ nothing happened, 1 -\/ apple eaten, -\/1 -\/ snake ate itself or out of bounds, -\/2 -\/ snake is NULL error) 
+\end{DoxyReturn}

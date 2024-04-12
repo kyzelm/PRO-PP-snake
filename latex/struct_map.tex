@@ -1,0 +1,107 @@
+\doxysection{Map Struct Reference}
+\hypertarget{struct_map}{}\label{struct_map}\index{Map@{Map}}
+
+
+Game map structure.  
+
+
+
+
+{\ttfamily \#include $<$Map.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_map_a2474a5474cbff19523a51eb1de01cda4}{width}}
+\item 
+int \mbox{\hyperlink{struct_map_ad12fc34ce789bce6c8a05d8a17138534}{height}}
+\item 
+int \mbox{\hyperlink{struct_map_a79f3fb0fd2c088965288b417421b4e19}{apple}} \mbox{[}2\mbox{]}
+\item 
+int \mbox{\hyperlink{struct_map_ab52b42d06002cee06ef60246fea9d094}{map\+Table}} \mbox{[}30\mbox{]}\mbox{[}30\mbox{]}
+\item 
+float \mbox{\hyperlink{struct_map_ae9c560cbea0e78dc5e2f0cf1973c3704}{display\+Width}}
+\item 
+float \mbox{\hyperlink{struct_map_a27ce10de06887932c987d5789f93c488}{display\+Height}}
+\item 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_map_a86eb13bc6bf18a6ef408d97e40e4540a}{board\+Image}}
+\item 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_map_a45011ca8ffab684dcf8aa469a8b741ad}{apple\+Image}}
+\item 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_map_a79a88e312f619a23b88d0c34465c23af}{snake\+Head\+Image}}
+\item 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_map_ab25030cfcd8df62407ee8d29130fbe1f}{snake\+Tail\+Image}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Game map structure. 
+
+Structure represents the game map and its elements 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_map_a79f3fb0fd2c088965288b417421b4e19}\label{struct_map_a79f3fb0fd2c088965288b417421b4e19} 
+\index{Map@{Map}!apple@{apple}}
+\index{apple@{apple}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{apple}{apple}}
+{\footnotesize\ttfamily int apple\mbox{[}2\mbox{]}}
+
+apple coordinates \Hypertarget{struct_map_a45011ca8ffab684dcf8aa469a8b741ad}\label{struct_map_a45011ca8ffab684dcf8aa469a8b741ad} 
+\index{Map@{Map}!appleImage@{appleImage}}
+\index{appleImage@{appleImage}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{appleImage}{appleImage}}
+{\footnotesize\ttfamily ALLEGRO\+\_\+\+BITMAP\texorpdfstring{$\ast$}{*} apple\+Image}
+
+apple image \Hypertarget{struct_map_a86eb13bc6bf18a6ef408d97e40e4540a}\label{struct_map_a86eb13bc6bf18a6ef408d97e40e4540a} 
+\index{Map@{Map}!boardImage@{boardImage}}
+\index{boardImage@{boardImage}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{boardImage}{boardImage}}
+{\footnotesize\ttfamily ALLEGRO\+\_\+\+BITMAP\texorpdfstring{$\ast$}{*} board\+Image}
+
+board background image \Hypertarget{struct_map_a27ce10de06887932c987d5789f93c488}\label{struct_map_a27ce10de06887932c987d5789f93c488} 
+\index{Map@{Map}!displayHeight@{displayHeight}}
+\index{displayHeight@{displayHeight}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{displayHeight}{displayHeight}}
+{\footnotesize\ttfamily float display\+Height}
+
+ALLEGRO\+\_\+\+DISPLAY instance height \Hypertarget{struct_map_ae9c560cbea0e78dc5e2f0cf1973c3704}\label{struct_map_ae9c560cbea0e78dc5e2f0cf1973c3704} 
+\index{Map@{Map}!displayWidth@{displayWidth}}
+\index{displayWidth@{displayWidth}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{displayWidth}{displayWidth}}
+{\footnotesize\ttfamily float display\+Width}
+
+ALLEGRO\+\_\+\+DISPLAY instance width \Hypertarget{struct_map_ad12fc34ce789bce6c8a05d8a17138534}\label{struct_map_ad12fc34ce789bce6c8a05d8a17138534} 
+\index{Map@{Map}!height@{height}}
+\index{height@{height}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily int height}
+
+map height (in tiles) \Hypertarget{struct_map_ab52b42d06002cee06ef60246fea9d094}\label{struct_map_ab52b42d06002cee06ef60246fea9d094} 
+\index{Map@{Map}!mapTable@{mapTable}}
+\index{mapTable@{mapTable}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{mapTable}{mapTable}}
+{\footnotesize\ttfamily int map\+Table\mbox{[}30\mbox{]}\mbox{[}30\mbox{]}}
+
+map table of elements \Hypertarget{struct_map_a79a88e312f619a23b88d0c34465c23af}\label{struct_map_a79a88e312f619a23b88d0c34465c23af} 
+\index{Map@{Map}!snakeHeadImage@{snakeHeadImage}}
+\index{snakeHeadImage@{snakeHeadImage}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{snakeHeadImage}{snakeHeadImage}}
+{\footnotesize\ttfamily ALLEGRO\+\_\+\+BITMAP\texorpdfstring{$\ast$}{*} snake\+Head\+Image}
+
+snake head image \Hypertarget{struct_map_ab25030cfcd8df62407ee8d29130fbe1f}\label{struct_map_ab25030cfcd8df62407ee8d29130fbe1f} 
+\index{Map@{Map}!snakeTailImage@{snakeTailImage}}
+\index{snakeTailImage@{snakeTailImage}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{snakeTailImage}{snakeTailImage}}
+{\footnotesize\ttfamily ALLEGRO\+\_\+\+BITMAP\texorpdfstring{$\ast$}{*} snake\+Tail\+Image}
+
+snake tail image \Hypertarget{struct_map_a2474a5474cbff19523a51eb1de01cda4}\label{struct_map_a2474a5474cbff19523a51eb1de01cda4} 
+\index{Map@{Map}!width@{width}}
+\index{width@{width}!Map@{Map}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily int width}
+
+map width (in tiles) 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+PRO-\/\+PP-\/snake/\mbox{\hyperlink{_map_8h}{Map.\+h}}\end{DoxyCompactItemize}

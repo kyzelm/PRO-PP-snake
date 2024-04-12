@@ -1,5 +1,19 @@
+/*****************************************************************//**
+ * \file   InterfaceController.c
+ * \brief  Main controller for the game states and menu
+ * 
+ * \author Damian Osiñski
+ * \date   April 2024
+ *********************************************************************/
+
 #include "InterfaceController.h"
 
+/**
+ * \brief Create a new interface controller
+ * Function allocates memory for the InterfaceController structure and initializes starting values for the game state, pause state, game over state, snake speed, snake step, snake length, snake direction, timer counter, previous snake direction, menu mode and menu cursor. It also initializes the menu strings.
+ * 
+ * \return pointer to the created interface controller
+ */
 InterfaceController* createInterfaceController() {
 	InterfaceController* interfaceController = (InterfaceController*)malloc(sizeof(InterfaceController));
 	interfaceController->gameState = 0;
@@ -16,12 +30,18 @@ InterfaceController* createInterfaceController() {
 	strcpy(interfaceController->menu[0][0], "Play");
 	strcpy(interfaceController->menu[0][1], "Controls");
 	strcpy(interfaceController->menu[0][2], "Exit");
-	strcpy(interfaceController->menu[1][0], "Easy");
-	strcpy(interfaceController->menu[1][1], "Hard");
+	strcpy(interfaceController->menu[1][0], "Standard");
+	strcpy(interfaceController->menu[1][1], "Asia");
 	strcpy(interfaceController->menu[1][2], "Back");
 	return interfaceController;
 }
 
+/**
+ * \brief Delete the interface controller
+ * Function frees memory allocated for the interface controller
+ * 
+ * \param interfaceController pointer to the interface controller to be deleted
+ */
 void destroyInterfaceController(InterfaceController* interfaceController) {
 	free(interfaceController);
 }

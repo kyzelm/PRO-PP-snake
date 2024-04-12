@@ -30,6 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="MainPageDoxygen.dox" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SnakeNode.h">

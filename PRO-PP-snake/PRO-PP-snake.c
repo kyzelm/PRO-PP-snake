@@ -1,3 +1,13 @@
+/*****************************************************************//**
+ * \file   PRO-PP-snake.c
+ * \brief  Main file of the Snake game, written in C with Allegro 5 library.
+ * File contains main function, which is responsible for creating and managing game display, fonts, event queue, timer, background, title, music, sounds, interface controller and map.
+ * It also contains main game loop, which is responsible for managing game states, drawing game elements and handling user input.
+ * 
+ * \author Damian Osiñski
+ * \date   April 2024
+ *********************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -14,8 +24,14 @@
 #include "Map.h"
 #include "InterfaceController.h"
 
+/**
+ * \brief Main function of the game.
+ * 
+ * \return 0 if program executed successfully.
+ */
 int main() {
 
+	// Allegro structures initialization
 	ALLEGRO_DISPLAY* display = NULL;
 	ALLEGRO_FONT* hugeFont = NULL, * font = NULL, * mediumFont = NULL, * smallFont = NULL;
 	ALLEGRO_EVENT_QUEUE* event_queue = NULL;
@@ -23,14 +39,18 @@ int main() {
 	ALLEGRO_TIMER* timer = NULL;
 	ALLEGRO_BITMAP* background = NULL, * title = NULL;
 	ALLEGRO_SAMPLE* backgroundMusic = NULL, * pointSound = NULL;
+	//
 
+	// Allegro addons initialization
 	al_init();
 	al_init_font_addon();
 	al_init_ttf_addon();
 	al_init_image_addon();
 	al_install_audio();
 	al_init_acodec_addon();
+	//
 
+	// Allegro structures setup
 	al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
 	display = al_create_display(SCREEN_WIDTH, SCREEN_HEIGHT);
 	al_set_window_title(display, "Snake");
@@ -58,26 +78,30 @@ int main() {
 
 	srand((unsigned int)time(NULL));
 	al_start_timer(timer);
+	//
 
+	// Creating in game structures
 	InterfaceController* interfaceController = createInterfaceController();
 	Map* map = createMap(19, 14, display);
+	//
 
-	al_play_sample(backgroundMusic, 0.1, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
+	al_play_sample(backgroundMusic, 0.2, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL); // Playing background music
 
+	// Main game loop
 	while (interfaceController->gameState != 4) {
 		ALLEGRO_EVENT event;
 		al_wait_for_event(event_queue, &event);
 
-		if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+		if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) { // Closing the game by clicking the X button
 			interfaceController->gameState = 4;
 		}
 	
-		if (event.type == ALLEGRO_EVENT_TIMER) {
+		if (event.type == ALLEGRO_EVENT_TIMER) { // Timer based actions
 			al_flip_display();
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 			al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0, al_get_display_width(display), al_get_display_height(display), 0);
 			
-			if (interfaceController->gameState == 0) {
+			if (interfaceController->gameState == 0) { // Main menu screen
 				al_draw_bitmap(title, al_get_display_width(display) / 2.0 - al_get_bitmap_width(title) / 2.0, 150, 0);
 				for (int i = 0; i < 3; i++) {
 					if (interfaceController->menuCursor == i) 
@@ -87,7 +111,7 @@ int main() {
 				}
 			}
 
-			else if (interfaceController->gameState == 1){
+			else if (interfaceController->gameState == 1){ // Controls screen
 				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP, ALLEGRO_ALIGN_LEFT, "Back");
 				al_draw_text(smallFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP + 50, ALLEGRO_ALIGN_LEFT, "[ESC]");
 				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0 - 150, ALLEGRO_ALIGN_LEFT, "Arrows / WASD");
@@ -100,7 +124,9 @@ int main() {
 				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 + 500, al_get_display_height(display) / 2.0 + 150, ALLEGRO_ALIGN_RIGHT, "Accept");
 			}
 			
-			else if (interfaceController->gameState == 2) {
+			else if (interfaceController->gameState == 2) { // Game screen
+				
+				// Snake controls detection and handling
 				if (!interfaceController->isPaused) {
 					al_get_keyboard_state(&keyState);
 					if ((al_key_down(&keyState, ALLEGRO_KEY_LEFT) || al_key_down(&keyState, ALLEGRO_KEY_A)) && interfaceController->prevSnakeDirection != 1) {
@@ -116,6 +142,7 @@ int main() {
 						interfaceController->snakeDirection = 2;
 					}
 				}
+				//
 
 				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP, ALLEGRO_ALIGN_LEFT, (interfaceController->isPaused) ? "Play" : "Pause");
 				al_draw_text(smallFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP + 50, ALLEGRO_ALIGN_LEFT, "[ESC]");
@@ -128,29 +155,35 @@ int main() {
 
 				if (!interfaceController->isPaused) {
 					interfaceController->timerCounter++;
-					if (interfaceController->timerCounter > 20.0 / interfaceController->snakeSpeed) {
+
+					if (interfaceController->timerCounter > 20.0 / interfaceController->snakeSpeed) { // Snake move tick
 						int result = updateMap(map, interfaceController->snakeDirection);
 						interfaceController->prevSnakeDirection = interfaceController->snakeDirection;
-						if (result == -1) {
+						
+						if (result == -1) { // Game over
 							interfaceController->gameState = 3;
 							interfaceController->gameOverState = 0;
 						}
-						else if (result == 1) {
+						
+						else if (result == 1) { // Point collected
 							interfaceController->snakeLength++;
 							al_play_sample(pointSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-							if (interfaceController->snakeLength >= map->width * map->height) {
+
+							if (interfaceController->snakeLength >= map->width * map->height) { // Win condition
 								interfaceController->gameState = 3;
 								interfaceController->gameOverState = 1;
 							}
-							if (interfaceController->snakeLength % 10 == 0)
+
+							if (interfaceController->snakeLength - 3 % 10 == 0) // Speed up every 10 points
 								interfaceController->snakeSpeed += interfaceController->snakeStep;
 						}
+						
 						interfaceController->timerCounter = 0;
 					}
 				}
 			}
 			
-			else if (interfaceController->gameState == 3) {
+			else if (interfaceController->gameState == 3) { // Game over screen
 				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP, ALLEGRO_ALIGN_LEFT, "Menu");
 				al_draw_text(smallFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP + 50, ALLEGRO_ALIGN_LEFT, "[ENTER]");
 				al_draw_text(hugeFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0, al_get_display_height(display) / 2.0 - 150, ALLEGRO_ALIGN_CENTER, interfaceController->gameOverState == 0 ? "You Lose!" : "You Win!");
@@ -158,8 +191,8 @@ int main() {
 			}
 		}
 
-		if (event.type == ALLEGRO_EVENT_KEY_DOWN) {
-			if (interfaceController->gameState == 0) {
+		if (event.type == ALLEGRO_EVENT_KEY_DOWN) { // Keyboard events
+			if (interfaceController->gameState == 0) { // Main menu screen
 				switch (event.keyboard.keycode) {
 				case ALLEGRO_KEY_UP:
 				case ALLEGRO_KEY_W:
@@ -177,21 +210,21 @@ int main() {
 
 				case ALLEGRO_KEY_ENTER:
 					switch (interfaceController->menuMode) {
-					case 0:
+					case 0: // Home menu
 						switch (interfaceController->menuCursor) {
-						case 0:
+						case 0: // Play
 							interfaceController->menuMode = 1;
 							break;
-						case 1:
+						case 1: // Controls
 							interfaceController->gameState = 1;
 							break;
-						case 2:
+						case 2: // Exit
 							interfaceController->gameState = 4;
 							break;
 						}
 						break;
 
-					case 1:
+					case 1: // Level selection menu
 						interfaceController->snakeDirection = 0;
 						interfaceController->prevSnakeDirection = 0;
 						interfaceController->snakeLength = 3;
@@ -201,17 +234,17 @@ int main() {
 						resetSnake(map);
 
 						switch (interfaceController->menuCursor) {
-						case 0:
+						case 0: // Standard level
 							interfaceController->snakeSpeed = 1.0;
 							interfaceController->snakeStep = 0.1;
 							interfaceController->gameState = 2;
 							break;
-						case 1:
+						case 1: // Asia level
 							interfaceController->snakeSpeed = 2.0;
 							interfaceController->snakeStep = 0.05;
 							interfaceController->gameState = 2;
 							break;
-						case 2:
+						case 2: // Back
 							break;
 						}
 						
@@ -231,7 +264,7 @@ int main() {
 				}
 			}
 			
-			else if (interfaceController->gameState == 1) {
+			else if (interfaceController->gameState == 1) { // Controls screen
 				switch (event.keyboard.keycode) {
 				case ALLEGRO_KEY_ESCAPE:
 					interfaceController->gameState = 0;
@@ -239,12 +272,12 @@ int main() {
 				}
 			}
 			
-			else if (interfaceController->gameState == 2) {
+			else if (interfaceController->gameState == 2) { // Game screen
 				if(event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) interfaceController->isPaused = !interfaceController->isPaused;
 				if(event.keyboard.keycode == ALLEGRO_KEY_R) interfaceController->gameState = 0;
 			}
 			
-			else if (interfaceController->gameState == 3) {
+			else if (interfaceController->gameState == 3) { // Game over screen
 				if (event.keyboard.keycode == ALLEGRO_KEY_ENTER) {
 					interfaceController->gameState = 0;
 				}
@@ -252,6 +285,7 @@ int main() {
 		}
 	}
 	
+	// Destroying all game structures
 	destroyMap(map);
 	destroyInterfaceController(interfaceController);
 	al_destroy_bitmap(background);
@@ -263,6 +297,11 @@ int main() {
 	al_destroy_timer(timer);
 	al_destroy_event_queue(event_queue);
 	al_uninstall_keyboard();
+	al_uninstall_audio();
+	al_shutdown_image_addon();
+	al_shutdown_ttf_addon();
+	al_shutdown_font_addon();
+	//
 
 	return 0;
 }

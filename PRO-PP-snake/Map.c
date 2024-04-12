@@ -1,3 +1,11 @@
+/*****************************************************************//**
+ * \file   Map.c
+ * \brief  Map generation, update and print functions
+ * 
+ * \author Damian Osiñski
+ * \date   April 2024
+ *********************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -11,6 +19,15 @@
 
 SnakeNode* snakeHead = NULL;
 
+/**
+ * \brief Create a new map
+ * Function creates a new map with given width and height, loads the images of the board, apple, snake head and snake tail. It also creates a snake with two nodes in the middle of the board and randomizes the apple position.
+ * 
+ * \param width board width (in tiles)
+ * \param height board height (in tiles)
+ * \param display pointer to the ALLEGRO_DISPLAY instance to calculate the position of the board
+ * \return pointer to the created map
+ */
 Map* createMap(int width, int height, ALLEGRO_DISPLAY* display) {
 	Map* map = (Map*)malloc(sizeof(Map));
 	if (map == NULL) {
@@ -36,11 +53,26 @@ Map* createMap(int width, int height, ALLEGRO_DISPLAY* display) {
 	return map;
 }
 
+
+/**
+ * \brief Randomize apple position.
+ * 
+ * \param map pointer to the map structure
+ */
 void randomizeApple(Map* map) {
 	map->apple[0] = rand() % map->width;
 	map->apple[1] = rand() % map->height;
 }
 
+
+/**
+ * \brief Update the map with the new snake and apple position.
+ * Function updates the map with the new snake and apple position. It also checks if the snake ate the apple, ate itself or went out of bounds.
+ * 
+ * \param map pointer to the map structure
+ * \param direction direction of actual snake movement (0 - up, 1 - right, 2 - down, 3 - left)
+ * \return snake movement result (0 - nothing happened, 1 - apple eaten, -1 - snake ate itself or out of bounds, -2 - snake is NULL error)
+ */
 int updateMap(Map* map, int direction) {
 	for (int y = 0; y < map->height; y++) {
 		for (int x = 0; x < map->width; x++) {
@@ -100,6 +132,13 @@ int updateMap(Map* map, int direction) {
 	}
 }
 
+/**
+ * \brief Print the map on the screen.
+ * Function prints the map on the screen with the snake and apple images based on the mapTable values.
+ * 
+ * \param map pointer to the map structure
+ * \param direction direction of actual snake movement (0 - up, 1 - right, 2 - down, 3 - left), important for the snake head rotation
+ */
 void printMap(Map* map, int direction) {
 	al_draw_bitmap(map->boardImage, map->displayWidth / 2 - 440, map->displayHeight / 2 - 240, 0);
 
@@ -125,6 +164,12 @@ void printMap(Map* map, int direction) {
 	}
 }
 
+/**
+ * \brief Reset the snake position.
+ * Function resets the snake position to the middle of the board and randomizes the apple position by deleting the snake and creating a new one.
+ * 
+ * \param map pointer to the map structure
+ */
 void resetSnake(Map* map) {
 	snakeHead = deleteSnake(snakeHead);
 	snakeHead = newSnakeHead(snakeHead, map->width / 2, map->height / 2 + 1);
@@ -134,6 +179,12 @@ void resetSnake(Map* map) {
 	updateMap(map, 0);
 }
 
+/**
+ * \brief Destroy the map.
+ * Function destroys the map by deleting the snake and freeing the memory.
+ * 
+ * \param map pointer to the map structure
+ */
 void destroyMap(Map* map) {
 	al_destroy_bitmap(map->appleImage);
 	al_destroy_bitmap(map->snakeHeadImage);

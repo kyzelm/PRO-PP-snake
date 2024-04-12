@@ -149,6 +149,7 @@
     <ClCompile Include="InterfaceController.c" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="MainPageDoxygen.dox" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
