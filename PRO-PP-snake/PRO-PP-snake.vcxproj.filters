@@ -65,4 +65,8 @@
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="main-music.mp3" />
+    <Media Include="point.mp3" />
+  </ItemGroup>
 </Project>

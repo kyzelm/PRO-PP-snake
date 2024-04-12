@@ -6,6 +6,8 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_image.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
 
 #include "Utils.h"
 
@@ -20,11 +22,14 @@ int main() {
 	ALLEGRO_KEYBOARD_STATE keyState;
 	ALLEGRO_TIMER* timer = NULL;
 	ALLEGRO_BITMAP* background = NULL, * title = NULL;
+	ALLEGRO_SAMPLE* backgroundMusic = NULL, * pointSound = NULL;
 
 	al_init();
 	al_init_font_addon();
 	al_init_ttf_addon();
 	al_init_image_addon();
+	al_install_audio();
+	al_init_acodec_addon();
 
 	al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
 	display = al_create_display(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -33,6 +38,11 @@ int main() {
 
 	background = al_load_bitmap("main-background.png");
 	title = al_load_bitmap("title.png");
+
+	backgroundMusic = al_load_sample("main-music.mp3");
+	pointSound = al_load_sample("point.mp3");
+	al_reserve_samples(2);
+
 	hugeFont = al_load_ttf_font("Silkscreen-Regular.ttf", 128, 0);
 	font = al_load_ttf_font("Silkscreen-Regular.ttf", 64, 0);
 	mediumFont = al_load_ttf_font("Silkscreen-Regular.ttf", 48, 0);
@@ -51,6 +61,8 @@ int main() {
 
 	InterfaceController* interfaceController = createInterfaceController();
 	Map* map = createMap(19, 14, display);
+
+	al_play_sample(backgroundMusic, 0.1, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
 
 	while (interfaceController->gameState != 4) {
 		ALLEGRO_EVENT event;
@@ -125,6 +137,7 @@ int main() {
 						}
 						else if (result == 1) {
 							interfaceController->snakeLength++;
+							al_play_sample(pointSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 							if (interfaceController->snakeLength >= map->width * map->height) {
 								interfaceController->gameState = 3;
 								interfaceController->gameOverState = 1;
@@ -150,12 +163,16 @@ int main() {
 				switch (event.keyboard.keycode) {
 				case ALLEGRO_KEY_UP:
 				case ALLEGRO_KEY_W:
-					if (interfaceController->menuCursor > 0) interfaceController->menuCursor = interfaceController->menuCursor - 1;
+					if (interfaceController->menuCursor > 0) {
+						interfaceController->menuCursor = interfaceController->menuCursor - 1;
+					}
 					break;
 
 				case ALLEGRO_KEY_DOWN:
 				case ALLEGRO_KEY_S:
-					if (interfaceController->menuCursor < 2) interfaceController->menuCursor = interfaceController->menuCursor + 1;
+					if (interfaceController->menuCursor < 2) {
+						interfaceController->menuCursor = interfaceController->menuCursor + 1;
+					}
 					break;
 
 				case ALLEGRO_KEY_ENTER:
@@ -238,7 +255,10 @@ int main() {
 	destroyMap(map);
 	destroyInterfaceController(interfaceController);
 	al_destroy_bitmap(background);
+	al_destroy_bitmap(title);
 	al_destroy_display(display);
+	al_destroy_sample(backgroundMusic);
+	al_destroy_sample(pointSound);
 	al_destroy_font(font);
 	al_destroy_timer(timer);
 	al_destroy_event_queue(event_queue);
