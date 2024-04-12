@@ -33,6 +33,6 @@ The game has a simple menu with the option to start the game, see the highscore 
 ## Creators
 The project was created by:
 - Kacper Nyga
-- Micha≥ Nowakowski
+- Micha≈Ç Nowakowski
 - Sebastian Orman
-- Damian OsiÒski
+- Damian Osi≈Ñski
