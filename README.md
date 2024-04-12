@@ -10,13 +10,6 @@ The game is written in C using the Allegro 5 library.
 Snake is controlled by the arrow keys o WASD keys. The goal of the game is to eat as many apples as possible without hitting the walls or the snake's body.
 The game has a simple menu with the option to start the game, see the highscore list, and exit the game.
 
-<br><br>
-
-## Download
-Procject can be downloaded from the GitHub repository: https://github.com/kyzelm/PRO-PP-snake
-
-<br><br>
-
 ## Technologies
 ### IDE
 - Visual Studio - An integrated development environment (IDE) from Microsoft (https://visualstudio.microsoft.com/)
