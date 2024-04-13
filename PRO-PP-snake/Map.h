@@ -22,7 +22,7 @@ typedef struct Map {
 	int width; /**< map width (in tiles) */
 	int height; /**< map height (in tiles) */
 	int apple[2]; /**< apple coordinates */
-	int mapTable[30][30]; /**< map table of elements */
+	int mapTable[20][20]; /**< map table of elements */
 	float displayWidth; /**< ALLEGRO_DISPLAY instance width */
 	float displayHeight; /**< ALLEGRO_DISPLAY instance height */
 	ALLEGRO_BITMAP* boardImage; /**< board background image */

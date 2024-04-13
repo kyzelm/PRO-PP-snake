@@ -71,14 +71,14 @@ void randomizeApple(Map* map) {
  * \return snake movement result (0 - nothing happened, 1 - apple eaten, -1 - snake ate itself or out of bounds, -2 - snake is NULL error)
  */
 int updateMap(Map* map, int direction) {
+	if (snakeHead == NULL) {
+		return -2; // snake is NULL error
+	}
+
 	for (int y = 0; y < map->height; y++) {
 		for (int x = 0; x < map->width; x++) {
 			map->mapTable[y][x] = 0;
 		}
-	}
-
-	if (snakeHead == NULL) {
-		return -2;
 	}
 	
 	SnakeNode* currentSnakeNode = snakeHead;
@@ -157,7 +157,6 @@ void printMap(Map* map, int direction) {
 				break;
 			}
 		}
-		printf("\n");
 	}
 }
 

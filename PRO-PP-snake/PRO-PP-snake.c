@@ -65,7 +65,7 @@ int main() {
 	menuBeepSound = al_load_sample("Sounds/beep.mp3");
 	loseSound = al_load_sample("Sounds/lose.mp3");
 	winSound = al_load_sample("Sounds/win.mp3");
-	al_reserve_samples(128);
+	al_reserve_samples(10);
 
 	hugeFont = al_load_ttf_font("Fonts/Silkscreen-Regular.ttf", 128, 0);
 	font = al_load_ttf_font("Fonts/Silkscreen-Regular.ttf", 64, 0);
