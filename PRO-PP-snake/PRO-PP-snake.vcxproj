@@ -159,19 +159,23 @@
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="apple.png" />
-    <Image Include="board-shadow.png" />
-    <Image Include="board.png" />
-    <Image Include="main-background.png" />
-    <Image Include="snake-head.png" />
-    <Image Include="snake-tail.png" />
+    <Font Include="Fonts\Silkscreen-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="beep.mp3" />
-    <Media Include="lose.mp3" />
-    <Media Include="main-music.mp3" />
-    <Media Include="point.mp3" />
-    <Media Include="win.mp3" />
+    <Image Include="Images\apple.png" />
+    <Image Include="Images\board-shadow.png" />
+    <Image Include="Images\board.png" />
+    <Image Include="Images\main-background.png" />
+    <Image Include="Images\snake-head.png" />
+    <Image Include="Images\snake-tail.png" />
+    <Image Include="Images\title.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Sounds\beep.mp3" />
+    <Media Include="Sounds\lose.mp3" />
+    <Media Include="Sounds\main-music.mp3" />
+    <Media Include="Sounds\point.mp3" />
+    <Media Include="Sounds\win.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -36,10 +36,10 @@ Map* createMap(int width, int height, ALLEGRO_DISPLAY* display) {
 	map->displayHeight = al_get_display_height(display);
 	map->apple[0] = -1;
 	map->apple[1] = -1;
-	map->boardImage = al_load_bitmap("board-shadow.png");
-	map->appleImage = al_load_bitmap("apple.png");
-	map->snakeHeadImage = al_load_bitmap("snake-head.png");
-	map->snakeTailImage = al_load_bitmap("snake-tail.png");
+	map->boardImage = al_load_bitmap("Images/board-shadow.png");
+	map->appleImage = al_load_bitmap("Images/apple.png");
+	map->snakeHeadImage = al_load_bitmap("Images/snake-head.png");
+	map->snakeTailImage = al_load_bitmap("Images/snake-tail.png");
 
 	snakeHead = newSnakeHead(snakeHead, width / 2, height / 2 + 1);
 	snakeHead = newSnakeHead(snakeHead, width / 2, height / 2);

@@ -47,30 +47,36 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="apple.png">
+    <Font Include="Fonts\Silkscreen-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\apple.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="board.png">
+    <Image Include="Images\board.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="board-shadow.png">
+    <Image Include="Images\board-shadow.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="main-background.png">
+    <Image Include="Images\main-background.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="snake-head.png">
+    <Image Include="Images\snake-head.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="snake-tail.png">
+    <Image Include="Images\snake-tail.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\title.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="main-music.mp3" />
-    <Media Include="point.mp3" />
-    <Media Include="beep.mp3" />
-    <Media Include="lose.mp3" />
-    <Media Include="win.mp3" />
+    <Media Include="Sounds\beep.mp3" />
+    <Media Include="Sounds\lose.mp3" />
+    <Media Include="Sounds\main-music.mp3" />
+    <Media Include="Sounds\point.mp3" />
+    <Media Include="Sounds\win.mp3" />
   </ItemGroup>
 </Project>

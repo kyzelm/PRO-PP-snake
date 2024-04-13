@@ -55,22 +55,22 @@ int main() {
 	al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
 	display = al_create_display(SCREEN_WIDTH, SCREEN_HEIGHT);
 	al_set_window_title(display, "Snake");
-	al_set_display_icon(display, al_load_bitmap("apple.png"));
+	al_set_display_icon(display, al_load_bitmap("Images/apple.png"));
 
-	background = al_load_bitmap("main-background.png");
-	title = al_load_bitmap("title.png");
+	background = al_load_bitmap("Images/main-background.png");
+	title = al_load_bitmap("Images/title.png");
 
-	backgroundMusic = al_load_sample("main-music.mp3");
-	pointSound = al_load_sample("point.mp3");
-	menuBeepSound = al_load_sample("beep.mp3");
-	loseSound = al_load_sample("lose.mp3");
-	winSound = al_load_sample("win.mp3");
+	backgroundMusic = al_load_sample("Sounds/main-music.mp3");
+	pointSound = al_load_sample("Sounds/point.mp3");
+	menuBeepSound = al_load_sample("Sounds/beep.mp3");
+	loseSound = al_load_sample("Sounds/lose.mp3");
+	winSound = al_load_sample("Sounds/win.mp3");
 	al_reserve_samples(128);
 
-	hugeFont = al_load_ttf_font("Silkscreen-Regular.ttf", 128, 0);
-	font = al_load_ttf_font("Silkscreen-Regular.ttf", 64, 0);
-	mediumFont = al_load_ttf_font("Silkscreen-Regular.ttf", 48, 0);
-	smallFont = al_load_ttf_font("Silkscreen-Regular.ttf", 32, 0);
+	hugeFont = al_load_ttf_font("Fonts/Silkscreen-Regular.ttf", 128, 0);
+	font = al_load_ttf_font("Fonts/Silkscreen-Regular.ttf", 64, 0);
+	mediumFont = al_load_ttf_font("Fonts/Silkscreen-Regular.ttf", 48, 0);
+	smallFont = al_load_ttf_font("Fonts/Silkscreen-Regular.ttf", 32, 0);
 
 	event_queue = al_create_event_queue();
 	timer = al_create_timer(1.0 / 60.0);
@@ -175,7 +175,7 @@ int main() {
 						interfaceController->prevSnakeDirection = interfaceController->snakeDirection;
 						
 						if (result == -1) { // Game over condition
-							al_set_sample_instance_gain(backgroundMusicInstance, 0.02);
+							al_stop_sample_instance(backgroundMusicInstance);
 							al_play_sample(loseSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 							interfaceController->gameState = 3;
 							interfaceController->gameOverState = 0;
@@ -302,7 +302,7 @@ int main() {
 				if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
 					al_play_sample(menuBeepSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 					interfaceController->isPaused = !interfaceController->isPaused;
-					(interfaceController->isPaused) ? al_set_sample_instance_gain(backgroundMusicInstance, 0.02) : al_set_sample_instance_gain(backgroundMusicInstance, 0.2);
+					(interfaceController->isPaused) ? al_set_sample_instance_gain(backgroundMusicInstance, 0.1) : al_set_sample_instance_gain(backgroundMusicInstance, 0.2);
 				}
 				if (event.keyboard.keycode == ALLEGRO_KEY_R && interfaceController->isPaused) {
 					al_play_sample(menuBeepSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
@@ -315,10 +315,7 @@ int main() {
 				if (event.keyboard.keycode == ALLEGRO_KEY_ENTER) {
 					al_play_sample(menuBeepSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 					al_stop_sample_instance(winSample);
-					if (interfaceController->gameOverState == 1)
-						al_play_sample_instance(backgroundMusicInstance);
-					else if (interfaceController->gameOverState == 0)
-						al_set_sample_instance_gain(backgroundMusicInstance, 0.2);
+					al_play_sample_instance(backgroundMusicInstance);
 					interfaceController->gameState = 0;
 				}
 			}
