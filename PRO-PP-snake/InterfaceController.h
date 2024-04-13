@@ -18,6 +18,7 @@
 typedef struct InterfaceController {
 	int gameState; /**< Main state determining what part of the game is currently displayed (0 - menu, 1 - controls, 2 - game, 3 - game over, 4 - close game) */
 	int isPaused; /**< Flag determining if the game is paused (0 - not paused, 1 - paused) */
+	int isMuted; /**< Flag determining if the game music is muted (0 - not muted, 1 - muted) */
 	int gameOverState; /**< State determining what type of game over screen is displayed (0 - lose, 1 - win) */
 	float snakeSpeed; /**< Timer tick multiplier determining the count of ticks between snake moves */
 	float snakeStep; /**< Snake speed value modifier */

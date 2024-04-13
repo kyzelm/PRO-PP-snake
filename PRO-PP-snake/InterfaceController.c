@@ -7,7 +7,7 @@
 
 /**
  * \brief Create a new interface controller
- * Function allocates memory for the InterfaceController structure and initializes starting values for the game state, pause state, game over state, snake speed, snake step, snake length, snake direction, timer counter, previous snake direction, menu mode and menu cursor. It also initializes the menu strings.
+ * Function allocates memory for the InterfaceController structure and initializes starting values for the game state, pause state, mute game, game over state, snake speed, snake step, snake length, snake direction, timer counter, previous snake direction, menu mode and menu cursor. It also initializes the menu strings.
  * 
  * \return pointer to the created interface controller
  */
@@ -15,6 +15,7 @@ InterfaceController* createInterfaceController() {
 	InterfaceController* interfaceController = (InterfaceController*)malloc(sizeof(InterfaceController));
 	interfaceController->gameState = 0;
 	interfaceController->isPaused = 0;
+	interfaceController->isMuted = 0;
 	interfaceController->gameOverState = 0;
 	interfaceController->snakeSpeed = 1.0;
 	interfaceController->snakeStep = 0.1;

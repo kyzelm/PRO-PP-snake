@@ -128,14 +128,16 @@ int main() {
 			else if (interfaceController->gameState == 1){ // Controls screen
 				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP, ALLEGRO_ALIGN_LEFT, "Back");
 				al_draw_text(smallFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP + 50, ALLEGRO_ALIGN_LEFT, "[ESC]");
-				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0 - 150, ALLEGRO_ALIGN_LEFT, "Arrows / WASD");
-				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 + 500, al_get_display_height(display) / 2.0 - 150, ALLEGRO_ALIGN_RIGHT, "Movement");
-				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0 - 50, ALLEGRO_ALIGN_LEFT, "ESC");
-				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 + 500, al_get_display_height(display) / 2.0 - 50, ALLEGRO_ALIGN_RIGHT, "Pause / Play");
-				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0 + 50, ALLEGRO_ALIGN_LEFT, "R");
-				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 + 500, al_get_display_height(display) / 2.0 + 50, ALLEGRO_ALIGN_RIGHT, "Exit game (on pause)");
-				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0 + 150, ALLEGRO_ALIGN_LEFT, "Enter");
-				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 + 500, al_get_display_height(display) / 2.0 + 150, ALLEGRO_ALIGN_RIGHT, "Accept");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0 - 200, ALLEGRO_ALIGN_LEFT, "Arrows / WASD");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 + 500, al_get_display_height(display) / 2.0 - 200, ALLEGRO_ALIGN_RIGHT, "Movement");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0 - 100, ALLEGRO_ALIGN_LEFT, "ESC");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 + 500, al_get_display_height(display) / 2.0 - 100, ALLEGRO_ALIGN_RIGHT, "Pause / Play");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0, ALLEGRO_ALIGN_LEFT, "R");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 + 500, al_get_display_height(display) / 2.0, ALLEGRO_ALIGN_RIGHT, "Exit game (on pause)");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0 + 100, ALLEGRO_ALIGN_LEFT, "Enter");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 + 500, al_get_display_height(display) / 2.0 + 100, ALLEGRO_ALIGN_RIGHT, "Accept");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 - 500, al_get_display_height(display) / 2.0 + 200, ALLEGRO_ALIGN_LEFT, "M");
+				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0 + 500, al_get_display_height(display) / 2.0 + 200, ALLEGRO_ALIGN_RIGHT, "Mute Music");
 			}
 			
 			else if (interfaceController->gameState == 2) { // Game screen
@@ -210,6 +212,22 @@ int main() {
 		}
 
 		if (event.type == ALLEGRO_EVENT_KEY_DOWN) { // Keyboard events
+			if (event.keyboard.keycode == ALLEGRO_KEY_M) {
+				interfaceController->isMuted = !interfaceController->isMuted;
+				if (interfaceController->isMuted) {
+					al_set_sample_instance_gain(backgroundMusicInstance, 0.0);
+					al_set_sample_instance_gain(winSample, 0.0);
+				}
+				else {
+					if (interfaceController->isPaused == 1) {
+						al_set_sample_instance_gain(backgroundMusicInstance, 0.1);
+					} else {
+						al_set_sample_instance_gain(backgroundMusicInstance, 0.2);
+					}
+					al_set_sample_instance_gain(winSample, 0.2);
+				}
+			}
+
 			if (interfaceController->gameState == 0) { // Main menu screen
 				switch (event.keyboard.keycode) {
 				case ALLEGRO_KEY_UP:

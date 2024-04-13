@@ -16,6 +16,8 @@ int \mbox{\hyperlink{struct_interface_controller_ab7ad0796d84021de0fd46246b3d509
 \item 
 int \mbox{\hyperlink{struct_interface_controller_ae94a6d0fee5bb82434df3fdafaec1704}{is\+Paused}}
 \item 
+int \mbox{\hyperlink{struct_interface_controller_a6c781f72849775bdacdfe00ec2b22989}{is\+Muted}}
+\item 
 int \mbox{\hyperlink{struct_interface_controller_ab53cc6e4bbab1052f19d53f04434146e}{game\+Over\+State}}
 \item 
 float \mbox{\hyperlink{struct_interface_controller_a13010aa6a2e43b0f489c7fa9e304cab5}{snake\+Speed}}
@@ -56,7 +58,13 @@ State determining what type of game over screen is displayed (0 -\/ lose, 1 -\/ 
 \doxysubsubsection{\texorpdfstring{gameState}{gameState}}
 {\footnotesize\ttfamily int game\+State}
 
-Main state determining what part of the game is currently displayed (0 -\/ menu, 1 -\/ controls, 2 -\/ game, 3 -\/ game over, 4 -\/ close game) \Hypertarget{struct_interface_controller_ae94a6d0fee5bb82434df3fdafaec1704}\label{struct_interface_controller_ae94a6d0fee5bb82434df3fdafaec1704} 
+Main state determining what part of the game is currently displayed (0 -\/ menu, 1 -\/ controls, 2 -\/ game, 3 -\/ game over, 4 -\/ close game) \Hypertarget{struct_interface_controller_a6c781f72849775bdacdfe00ec2b22989}\label{struct_interface_controller_a6c781f72849775bdacdfe00ec2b22989} 
+\index{InterfaceController@{InterfaceController}!isMuted@{isMuted}}
+\index{isMuted@{isMuted}!InterfaceController@{InterfaceController}}
+\doxysubsubsection{\texorpdfstring{isMuted}{isMuted}}
+{\footnotesize\ttfamily int is\+Muted}
+
+Flag determining if the game music are muted (0 -\/ not muted, 1 -\/ muted) \Hypertarget{struct_interface_controller_ae94a6d0fee5bb82434df3fdafaec1704}\label{struct_interface_controller_ae94a6d0fee5bb82434df3fdafaec1704} 
 \index{InterfaceController@{InterfaceController}!isPaused@{isPaused}}
 \index{isPaused@{isPaused}!InterfaceController@{InterfaceController}}
 \doxysubsubsection{\texorpdfstring{isPaused}{isPaused}}
