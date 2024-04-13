@@ -56,7 +56,7 @@ State determining what type of game over screen is displayed (0 -\/ lose, 1 -\/ 
 \doxysubsubsection{\texorpdfstring{gameState}{gameState}}
 {\footnotesize\ttfamily int game\+State}
 
-Main state determining what part of the game is currently displayed (0 -\/ menu, 1 -\/ controls, 2 -\/ game, 3 -\/ game over) \Hypertarget{struct_interface_controller_ae94a6d0fee5bb82434df3fdafaec1704}\label{struct_interface_controller_ae94a6d0fee5bb82434df3fdafaec1704} 
+Main state determining what part of the game is currently displayed (0 -\/ menu, 1 -\/ controls, 2 -\/ game, 3 -\/ game over, 4 -\/ close game) \Hypertarget{struct_interface_controller_ae94a6d0fee5bb82434df3fdafaec1704}\label{struct_interface_controller_ae94a6d0fee5bb82434df3fdafaec1704} 
 \index{InterfaceController@{InterfaceController}!isPaused@{isPaused}}
 \index{isPaused@{isPaused}!InterfaceController@{InterfaceController}}
 \doxysubsubsection{\texorpdfstring{isPaused}{isPaused}}
@@ -68,7 +68,7 @@ Flag determining if the game is paused (0 -\/ not paused, 1 -\/ paused) \Hyperta
 \doxysubsubsection{\texorpdfstring{menu}{menu}}
 {\footnotesize\ttfamily char menu\mbox{[}2\mbox{]}\mbox{[}3\mbox{]}\mbox{[}12\mbox{]}}
 
-Menu options table (2 menus, 3 options in each menu, maximum 10 characters in each option) \Hypertarget{struct_interface_controller_a76923fcbbdedc091727d76535236442b}\label{struct_interface_controller_a76923fcbbdedc091727d76535236442b} 
+Menu options table (2 menus, 3 options in each menu, maximum 12 characters in each option) \Hypertarget{struct_interface_controller_a76923fcbbdedc091727d76535236442b}\label{struct_interface_controller_a76923fcbbdedc091727d76535236442b} 
 \index{InterfaceController@{InterfaceController}!menuCursor@{menuCursor}}
 \index{menuCursor@{menuCursor}!InterfaceController@{InterfaceController}}
 \doxysubsubsection{\texorpdfstring{menuCursor}{menuCursor}}
@@ -80,7 +80,7 @@ Menu cursor position (0 -\/ first option, 1 -\/ second option, 2 -\/ third optio
 \doxysubsubsection{\texorpdfstring{menuMode}{menuMode}}
 {\footnotesize\ttfamily int menu\+Mode}
 
-Menu state determining which menu is currently displayed (0 -\/ main menu, 1 -\/ controls menu) \Hypertarget{struct_interface_controller_a6469ac3e7e872b11f8031b72cb4bcc7a}\label{struct_interface_controller_a6469ac3e7e872b11f8031b72cb4bcc7a} 
+Menu state determining which menu is currently displayed (0 -\/ main menu, 1 -\/ level menu) \Hypertarget{struct_interface_controller_a6469ac3e7e872b11f8031b72cb4bcc7a}\label{struct_interface_controller_a6469ac3e7e872b11f8031b72cb4bcc7a} 
 \index{InterfaceController@{InterfaceController}!prevSnakeDirection@{prevSnakeDirection}}
 \index{prevSnakeDirection@{prevSnakeDirection}!InterfaceController@{InterfaceController}}
 \doxysubsubsection{\texorpdfstring{prevSnakeDirection}{prevSnakeDirection}}
