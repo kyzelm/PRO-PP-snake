@@ -30,7 +30,7 @@ typedef struct InterfaceController {
 	int timerCounter; /**< Timer counter allowing to control the game speed */
 	int menuMode; /**< Menu state determining which menu is currently displayed (0 - main menu, 1 - controls menu) */
 	int menuCursor; /**< Menu cursor position (0 - first option, 1 - second option, 2 - third option) */
-	char menu[2][3][10]; /**< Menu options table (2 menus, 3 options in each menu, maximum 10 characters in each option) */
+	char menu[2][3][12]; /**< Menu options table (2 menus, 3 options in each menu, maximum 10 characters in each option) */
 } InterfaceController;
 
 InterfaceController* createInterfaceController();

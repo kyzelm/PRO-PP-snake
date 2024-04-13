@@ -160,7 +160,7 @@ int main() {
 						int result = updateMap(map, interfaceController->snakeDirection);
 						interfaceController->prevSnakeDirection = interfaceController->snakeDirection;
 						
-						if (result == -1) { // Game over
+						if (result == -1) { // Game over condition
 							interfaceController->gameState = 3;
 							interfaceController->gameOverState = 0;
 						}
@@ -186,7 +186,7 @@ int main() {
 			else if (interfaceController->gameState == 3) { // Game over screen
 				al_draw_text(mediumFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP, ALLEGRO_ALIGN_LEFT, "Menu");
 				al_draw_text(smallFont, al_map_rgb(240, 240, 240), SCREEN_PADDING_SIDE, SCREEN_PADDING_TOP + 50, ALLEGRO_ALIGN_LEFT, "[ENTER]");
-				al_draw_text(hugeFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0, al_get_display_height(display) / 2.0 - 150, ALLEGRO_ALIGN_CENTER, interfaceController->gameOverState == 0 ? "You Lose!" : "You Win!");
+				al_draw_text(hugeFont, al_map_rgb(240, 240, 240), al_get_display_width(display) / 2.0, al_get_display_height(display) / 2.0 - 150, ALLEGRO_ALIGN_CENTER, interfaceController->gameOverState == 0 ? "You Lose :(" : "You Win!");
 				al_draw_textf(mediumFont, al_map_rgb(144, 144, 144), al_get_display_width(display) / 2.0, al_get_display_height(display) / 2.0 + 50, ALLEGRO_ALIGN_CENTER, "> Score: %d <", interfaceController->snakeLength - 3);
 			}
 		}

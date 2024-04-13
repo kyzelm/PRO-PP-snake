@@ -31,7 +31,7 @@ InterfaceController* createInterfaceController() {
 	strcpy(interfaceController->menu[0][1], "Controls");
 	strcpy(interfaceController->menu[0][2], "Exit");
 	strcpy(interfaceController->menu[1][0], "Standard");
-	strcpy(interfaceController->menu[1][1], "Asia");
+	strcpy(interfaceController->menu[1][1], "Asia Level");
 	strcpy(interfaceController->menu[1][2], "Back");
 	return interfaceController;
 }
