@@ -23,16 +23,16 @@
  @licend  The above is the entire license notice for the JavaScript code in this file
 */
 var menudata={children:[
-{text:"Strona główna",url:"index.html"},
-{text:"Struktury Danych",url:"annotated.html",children:[
-{text:"Struktury danych",url:"annotated.html"},
-{text:"Pola danych",url:"functions.html",children:[
-{text:"Wszystko",url:"functions.html"},
-{text:"Zmienne",url:"functions_vars.html"}]}]},
-{text:"Pliki",url:"files.html",children:[
-{text:"Lista plików",url:"files.html"},
-{text:"Globalne",url:"globals.html",children:[
-{text:"Wszystko",url:"globals.html"},
-{text:"Funkcje",url:"globals_func.html"},
-{text:"Definicje typów",url:"globals_type.html"},
-{text:"Definicje",url:"globals_defs.html"}]}]}]}
+{text:"Main Page",url:"index.html"},
+{text:"Data Structures",url:"annotated.html",children:[
+{text:"Data Structures",url:"annotated.html"},
+{text:"Data Fields",url:"functions.html",children:[
+{text:"All",url:"functions.html"},
+{text:"Variables",url:"functions_vars.html"}]}]},
+{text:"Files",url:"files.html",children:[
+{text:"File List",url:"files.html"},
+{text:"Globals",url:"globals.html",children:[
+{text:"All",url:"globals.html"},
+{text:"Functions",url:"globals_func.html"},
+{text:"Typedefs",url:"globals_type.html"},
+{text:"Macros",url:"globals_defs.html"}]}]}]}

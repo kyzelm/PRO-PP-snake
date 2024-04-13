@@ -1,22 +1,22 @@
-\doxysection{Dokumentacja pliku PRO-\/\+PP-\/snake/\+Snake\+Node.h}
+\doxysection{PRO-\/\+PP-\/snake/\+Snake\+Node.h File Reference}
 \hypertarget{_snake_node_8h}{}\label{_snake_node_8h}\index{PRO-\/PP-\/snake/SnakeNode.h@{PRO-\/PP-\/snake/SnakeNode.h}}
 
 
 Snake node element structure and functions declarations.  
 
 
-\doxysubsubsection*{Struktury danych}
+\doxysubsubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{struct_snake_node}{Snake\+Node}}
 \begin{DoxyCompactList}\small\item\em Snake node element structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Definicje typów}
+\doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{_snake_node_8h_a9e7c200a13c2718bd4357a5f87aa2657}\label{_snake_node_8h_a9e7c200a13c2718bd4357a5f87aa2657} 
 typedef struct Snake\+Node {\bfseries Snake\+Node}
 \begin{DoxyCompactList}\small\item\em Snake node element structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Funkcje}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{struct_snake_node}{Snake\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_snake_node_8h_a46794f4255ebe28b7989cfd658327f47}{new\+Snake\+Head}} (\mbox{\hyperlink{struct_snake_node}{Snake\+Node}} \texorpdfstring{$\ast$}{*}snake\+Head\+Node, int x, int y)
@@ -27,18 +27,18 @@ void \mbox{\hyperlink{_snake_node_8h_a51110690561ad0e7db72477ade820b4a}{delete\+
 \begin{DoxyCompactList}\small\item\em Delete all node elements of the snake Function deletes all node elements of the snake to free memory and allow to start new game. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Opis szczegółowy}
+\doxysubsection{Detailed Description}
 Snake node element structure and functions declarations. 
 
-\begin{DoxyAuthor}{Autor}
+\begin{DoxyAuthor}{Author}
 Damian Osiński 
 \end{DoxyAuthor}
-\begin{DoxyDate}{Data}
+\begin{DoxyDate}{Date}
 April 2024 
 \end{DoxyDate}
 
 
-\doxysubsection{Dokumentacja funkcji}
+\doxysubsection{Function Documentation}
 \Hypertarget{_snake_node_8h_a527f9ba89f00bf02c15a2fe84bbc59a7}\label{_snake_node_8h_a527f9ba89f00bf02c15a2fe84bbc59a7} 
 \index{SnakeNode.h@{SnakeNode.h}!deleteSnake@{deleteSnake}}
 \index{deleteSnake@{deleteSnake}!SnakeNode.h@{SnakeNode.h}}
@@ -50,11 +50,11 @@ April 2024
 Delete all node elements of the snake Function deletes all node elements of the snake to free memory and allow to start new game. 
 
 
-\begin{DoxyParams}{Parametry}
+\begin{DoxyParams}{Parameters}
 {\em snake\+Head\+Node} & head node element pointer of the snake \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Zwraca}
+\begin{DoxyReturn}{Returns}
 NULL to set snake\+Head\+Node to NULL 
 \end{DoxyReturn}
 \Hypertarget{_snake_node_8h_a51110690561ad0e7db72477ade820b4a}\label{_snake_node_8h_a51110690561ad0e7db72477ade820b4a} 
@@ -68,7 +68,7 @@ NULL to set snake\+Head\+Node to NULL
 Delete last node element of the snake Function deletes last node element of the snake to coordinate the snake movement with new\+Sanke\+Head function. 
 
 
-\begin{DoxyParams}{Parametry}
+\begin{DoxyParams}{Parameters}
 {\em snake\+Head\+Node} & head node element pointer of the snake \\
 \hline
 \end{DoxyParams}
@@ -83,7 +83,7 @@ Delete last node element of the snake Function deletes last node element of the 
 Add new head node element to the snake Function creates new head node element of the snake with given coordinates x and y and returns it to simulate movement of the snake. 
 
 
-\begin{DoxyParams}{Parametry}
+\begin{DoxyParams}{Parameters}
 {\em snake\+Head\+Node} & previos head node element pointer of the snake \\
 \hline
 {\em x} & first coordinate of the snake \\
@@ -91,6 +91,6 @@ Add new head node element to the snake Function creates new head node element of
 {\em y} & second coordinate of the snake \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Zwraca}
+\begin{DoxyReturn}{Returns}
 pointer to the new head node element of the snake 
 \end{DoxyReturn}

@@ -1,4 +1,4 @@
-\doxysection{Dokumentacja pliku PRO-\/\+PP-\/snake/\+Interface\+Controller.c}
+\doxysection{PRO-\/\+PP-\/snake/\+Interface\+Controller.c File Reference}
 \hypertarget{_interface_controller_8c}{}\label{_interface_controller_8c}\index{PRO-\/PP-\/snake/InterfaceController.c@{PRO-\/PP-\/snake/InterfaceController.c}}
 
 
@@ -6,7 +6,7 @@ Main controller for the game states and menu.
 
 
 {\ttfamily \#include "{}Interface\+Controller.\+h"{}}\newline
-\doxysubsubsection*{Funkcje}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{struct_interface_controller}{Interface\+Controller}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_interface_controller_8c_a07bae1caedfb0dca71ae01c416cefa7e}{create\+Interface\+Controller}} ()
@@ -15,18 +15,18 @@ void \mbox{\hyperlink{_interface_controller_8c_ad1f4b36f3301a5d42a6dfc04b73c937a
 \begin{DoxyCompactList}\small\item\em Delete the interface controller Function frees memory allocated for the interface controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Opis szczegółowy}
+\doxysubsection{Detailed Description}
 Main controller for the game states and menu. 
 
-\begin{DoxyAuthor}{Autor}
+\begin{DoxyAuthor}{Author}
 Damian Osiński 
 \end{DoxyAuthor}
-\begin{DoxyDate}{Data}
+\begin{DoxyDate}{Date}
 April 2024 
 \end{DoxyDate}
 
 
-\doxysubsection{Dokumentacja funkcji}
+\doxysubsection{Function Documentation}
 \Hypertarget{_interface_controller_8c_a07bae1caedfb0dca71ae01c416cefa7e}\label{_interface_controller_8c_a07bae1caedfb0dca71ae01c416cefa7e} 
 \index{InterfaceController.c@{InterfaceController.c}!createInterfaceController@{createInterfaceController}}
 \index{createInterfaceController@{createInterfaceController}!InterfaceController.c@{InterfaceController.c}}
@@ -37,7 +37,7 @@ April 2024
 
 Create a new interface controller Function allocates memory for the \doxylink{struct_interface_controller}{Interface\+Controller} structure and initializes starting values for the game state, pause state, game over state, snake speed, snake step, snake length, snake direction, timer counter, previous snake direction, menu mode and menu cursor. It also initializes the menu strings. 
 
-\begin{DoxyReturn}{Zwraca}
+\begin{DoxyReturn}{Returns}
 pointer to the created interface controller 
 \end{DoxyReturn}
 \Hypertarget{_interface_controller_8c_ad1f4b36f3301a5d42a6dfc04b73c937a}\label{_interface_controller_8c_ad1f4b36f3301a5d42a6dfc04b73c937a} 
@@ -51,7 +51,7 @@ pointer to the created interface controller
 Delete the interface controller Function frees memory allocated for the interface controller. 
 
 
-\begin{DoxyParams}{Parametry}
+\begin{DoxyParams}{Parameters}
 {\em interface\+Controller} & pointer to the interface controller to be deleted \\
 \hline
 \end{DoxyParams}

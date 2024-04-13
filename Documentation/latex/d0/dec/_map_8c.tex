@@ -1,4 +1,4 @@
-\doxysection{Dokumentacja pliku PRO-\/\+PP-\/snake/\+Map.c}
+\doxysection{PRO-\/\+PP-\/snake/\+Map.c File Reference}
 \hypertarget{_map_8c}{}\label{_map_8c}\index{PRO-\/PP-\/snake/Map.c@{PRO-\/PP-\/snake/Map.c}}
 
 
@@ -12,7 +12,7 @@
 {\ttfamily \#include "{}utils.\+h"{}}\newline
 {\ttfamily \#include "{}Map.\+h"{}}\newline
 {\ttfamily \#include "{}Snake\+Node.\+h"{}}\newline
-\doxysubsubsection*{Funkcje}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{struct_map}{Map}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_map_8c_a3fbc261290b9b7519d7bd5e16c48c02b}{create\+Map}} (int width, int height, ALLEGRO\+\_\+\+DISPLAY \texorpdfstring{$\ast$}{*}display)
@@ -27,7 +27,7 @@ void \mbox{\hyperlink{_map_8c_a47ee8f0d0f6ea57436da222ae3169428}{reset\+Snake}} 
 \begin{DoxyCompactList}\small\item\em Reset the snake position. Function resets the snake position to the middle of the board and randomizes the apple position by deleting the snake and creating a new one. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_map_8c_a64df896c814cef549bef88fcd20d9a67}{destroy\+Map}} (\mbox{\hyperlink{struct_map}{Map}} \texorpdfstring{$\ast$}{*}map)
 \begin{DoxyCompactList}\small\item\em Destroy the map. Function destroys the map by deleting the snake and freeing the memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Zmienne}
+\doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{_map_8c_a6136a671c5724c76afd8f447a8b842b9}\label{_map_8c_a6136a671c5724c76afd8f447a8b842b9} 
@@ -35,18 +35,18 @@ void \mbox{\hyperlink{_map_8c_a64df896c814cef549bef88fcd20d9a67}{destroy\+Map}} 
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Opis szczegółowy}
+\doxysubsection{Detailed Description}
 \doxylink{struct_map}{Map} generation, update and print functions. 
 
-\begin{DoxyAuthor}{Autor}
+\begin{DoxyAuthor}{Author}
 Damian Osiński 
 \end{DoxyAuthor}
-\begin{DoxyDate}{Data}
+\begin{DoxyDate}{Date}
 April 2024 
 \end{DoxyDate}
 
 
-\doxysubsection{Dokumentacja funkcji}
+\doxysubsection{Function Documentation}
 \Hypertarget{_map_8c_a3fbc261290b9b7519d7bd5e16c48c02b}\label{_map_8c_a3fbc261290b9b7519d7bd5e16c48c02b} 
 \index{Map.c@{Map.c}!createMap@{createMap}}
 \index{createMap@{createMap}!Map.c@{Map.c}}
@@ -58,7 +58,7 @@ April 2024
 Create a new map Function creates a new map with given width and height, loads the images of the board, apple, snake head and snake tail. It also creates a snake with two nodes in the middle of the board and randomizes the apple position. 
 
 
-\begin{DoxyParams}{Parametry}
+\begin{DoxyParams}{Parameters}
 {\em width} & board width (in tiles) \\
 \hline
 {\em height} & board height (in tiles) \\
@@ -66,7 +66,7 @@ Create a new map Function creates a new map with given width and height, loads t
 {\em display} & pointer to the ALLEGRO\+\_\+\+DISPLAY instance to calculate the position of the board \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Zwraca}
+\begin{DoxyReturn}{Returns}
 pointer to the created map 
 \end{DoxyReturn}
 \Hypertarget{_map_8c_a64df896c814cef549bef88fcd20d9a67}\label{_map_8c_a64df896c814cef549bef88fcd20d9a67} 
@@ -80,7 +80,7 @@ pointer to the created map
 Destroy the map. Function destroys the map by deleting the snake and freeing the memory. 
 
 
-\begin{DoxyParams}{Parametry}
+\begin{DoxyParams}{Parameters}
 {\em map} & pointer to the map structure \\
 \hline
 \end{DoxyParams}
@@ -95,7 +95,7 @@ Destroy the map. Function destroys the map by deleting the snake and freeing the
 Print the map on the screen. Function prints the map on the screen with the snake and apple images based on the map\+Table values. 
 
 
-\begin{DoxyParams}{Parametry}
+\begin{DoxyParams}{Parameters}
 {\em map} & pointer to the map structure \\
 \hline
 {\em direction} & direction of actual snake movement (0 -\/ up, 1 -\/ right, 2 -\/ down, 3 -\/ left), important for the snake head rotation \\
@@ -112,7 +112,7 @@ Print the map on the screen. Function prints the map on the screen with the snak
 Randomize apple position. 
 
 
-\begin{DoxyParams}{Parametry}
+\begin{DoxyParams}{Parameters}
 {\em map} & pointer to the map structure \\
 \hline
 \end{DoxyParams}
@@ -127,7 +127,7 @@ Randomize apple position.
 Reset the snake position. Function resets the snake position to the middle of the board and randomizes the apple position by deleting the snake and creating a new one. 
 
 
-\begin{DoxyParams}{Parametry}
+\begin{DoxyParams}{Parameters}
 {\em map} & pointer to the map structure \\
 \hline
 \end{DoxyParams}
@@ -142,12 +142,12 @@ Reset the snake position. Function resets the snake position to the middle of th
 Update the map with the new snake and apple position. Function updates the map with the new snake and apple position. It also checks if the snake ate the apple, ate itself or went out of bounds. 
 
 
-\begin{DoxyParams}{Parametry}
+\begin{DoxyParams}{Parameters}
 {\em map} & pointer to the map structure \\
 \hline
 {\em direction} & direction of actual snake movement (0 -\/ up, 1 -\/ right, 2 -\/ down, 3 -\/ left) \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Zwraca}
+\begin{DoxyReturn}{Returns}
 snake movement result (0 -\/ nothing happened, 1 -\/ apple eaten, -\/1 -\/ snake ate itself or out of bounds, -\/2 -\/ snake is NULL error) 
 \end{DoxyReturn}
