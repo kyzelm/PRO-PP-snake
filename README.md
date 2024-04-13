@@ -31,7 +31,6 @@ Snake is controlled by the arrow keys o WASD keys. The goal of the game is to ea
 
 ## Creators
 The project was created by:
-- Kacper Nyga
 - Michał Nowakowski
 - Sebastian Orman
 - Damian Osiński
