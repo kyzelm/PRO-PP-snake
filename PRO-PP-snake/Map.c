@@ -1,9 +1,6 @@
 /*****************************************************************//**
  * \file   Map.c
  * \brief  Map generation, update and print functions
- * 
- * \author Damian Osiñski
- * \date   April 2024
  *********************************************************************/
 
 #include <stdio.h>

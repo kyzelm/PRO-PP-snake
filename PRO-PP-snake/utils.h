@@ -1,9 +1,6 @@
 /*****************************************************************//**
  * \file   utils.h
  * \brief  Utility constants for the game
- * 
- * \author Damian Osiñki
- * \date   April 2024
  *********************************************************************/
 
 #pragma once

@@ -1,9 +1,6 @@
 /*****************************************************************//**
  * \file   InterfaceController.h
  * \brief  Interface states controller structure and functions declarations
- * 
- * \author Damian Osiñski
- * \date   April 2024
  *********************************************************************/
 
 #pragma once

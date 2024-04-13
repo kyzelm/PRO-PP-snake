@@ -1,9 +1,6 @@
 /*****************************************************************//**
  * \file   Map.h
  * \brief  Map structure and functions declarations
- * 
- * \author Damian Osiñski
- * \date   April 2024
  *********************************************************************/
 
 #pragma once

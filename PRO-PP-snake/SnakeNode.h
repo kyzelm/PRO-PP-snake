@@ -1,9 +1,6 @@
 /*****************************************************************//**
  * \file   SnakeNode.h
  * \brief  Snake node element structure and functions declarations
- * 
- * \author Damian Osiñski
- * \date   April 2024
  *********************************************************************/
 
 #pragma once

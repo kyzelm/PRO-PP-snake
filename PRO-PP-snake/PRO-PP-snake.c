@@ -4,8 +4,8 @@
  * File contains main function, which is responsible for creating and managing game display, fonts, event queue, timer, background, title, music, sounds, interface controller and map.
  * It also contains main game loop, which is responsible for managing game states, drawing game elements and handling user input.
  * 
- * \author Damian Osiñski
- * \date   April 2024
+ * \authors Damian Osiñski, Micha³ Nowakowski, Sebastian Orman
+ * \version 1.0
  *********************************************************************/
 
 #include <stdio.h>
@@ -38,7 +38,8 @@ int main() {
 	ALLEGRO_KEYBOARD_STATE keyState;
 	ALLEGRO_TIMER* timer = NULL;
 	ALLEGRO_BITMAP* background = NULL, * title = NULL;
-	ALLEGRO_SAMPLE* backgroundMusic = NULL, * pointSound = NULL;
+	ALLEGRO_SAMPLE* backgroundMusic = NULL, * pointSound = NULL, * menuBeepSound = NULL, * loseSound = NULL, * winSound = NULL;
+	ALLEGRO_SAMPLE_INSTANCE* backgroundMusicInstance = NULL, * winSample = NULL;
 	//
 
 	// Allegro addons initialization
@@ -61,7 +62,10 @@ int main() {
 
 	backgroundMusic = al_load_sample("main-music.mp3");
 	pointSound = al_load_sample("point.mp3");
-	al_reserve_samples(2);
+	menuBeepSound = al_load_sample("beep.mp3");
+	loseSound = al_load_sample("lose.mp3");
+	winSound = al_load_sample("win.mp3");
+	al_reserve_samples(128);
 
 	hugeFont = al_load_ttf_font("Silkscreen-Regular.ttf", 128, 0);
 	font = al_load_ttf_font("Silkscreen-Regular.ttf", 64, 0);
@@ -85,7 +89,17 @@ int main() {
 	Map* map = createMap(19, 14, display);
 	//
 
-	al_play_sample(backgroundMusic, 0.2, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL); // Playing background music
+	// Background music setup
+	backgroundMusicInstance = al_create_sample_instance(backgroundMusic);
+	al_attach_sample_instance_to_mixer(backgroundMusicInstance, al_get_default_mixer());
+	al_set_sample_instance_playmode(backgroundMusicInstance, ALLEGRO_PLAYMODE_LOOP);
+	al_set_sample_instance_gain(backgroundMusicInstance, 0.2);
+	al_play_sample_instance(backgroundMusicInstance);
+
+	winSample = al_create_sample_instance(winSound);
+	al_set_sample_instance_playmode(winSample, ALLEGRO_PLAYMODE_LOOP);
+	al_attach_sample_instance_to_mixer(winSample, al_get_default_mixer());
+	al_set_sample_instance_gain(winSample, 0.2);
 
 	// Main game loop
 	while (interfaceController->gameState != 4) {
@@ -161,6 +175,8 @@ int main() {
 						interfaceController->prevSnakeDirection = interfaceController->snakeDirection;
 						
 						if (result == -1) { // Game over condition
+							al_set_sample_instance_gain(backgroundMusicInstance, 0.02);
+							al_play_sample(loseSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 							interfaceController->gameState = 3;
 							interfaceController->gameOverState = 0;
 						}
@@ -170,6 +186,8 @@ int main() {
 							al_play_sample(pointSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 
 							if (interfaceController->snakeLength >= map->width * map->height) { // Win condition
+								al_stop_sample_instance(backgroundMusicInstance);
+								al_play_sample_instance(winSample);
 								interfaceController->gameState = 3;
 								interfaceController->gameOverState = 1;
 							}
@@ -197,18 +215,21 @@ int main() {
 				case ALLEGRO_KEY_UP:
 				case ALLEGRO_KEY_W:
 					if (interfaceController->menuCursor > 0) {
+						al_play_sample(menuBeepSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 						interfaceController->menuCursor = interfaceController->menuCursor - 1;
 					}
-					break;
+					break;	
 
 				case ALLEGRO_KEY_DOWN:
 				case ALLEGRO_KEY_S:
 					if (interfaceController->menuCursor < 2) {
+						al_play_sample(menuBeepSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 						interfaceController->menuCursor = interfaceController->menuCursor + 1;
 					}
 					break;
 
 				case ALLEGRO_KEY_ENTER:
+					al_play_sample(menuBeepSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 					switch (interfaceController->menuMode) {
 					case 0: // Home menu
 						switch (interfaceController->menuCursor) {
@@ -225,6 +246,8 @@ int main() {
 						break;
 
 					case 1: // Level selection menu
+
+						// Resetting game states
 						interfaceController->snakeDirection = 0;
 						interfaceController->prevSnakeDirection = 0;
 						interfaceController->snakeLength = 3;
@@ -232,6 +255,7 @@ int main() {
 						interfaceController->gameOverState = 0;
 						interfaceController->isPaused = 0;
 						resetSnake(map);
+						//
 
 						switch (interfaceController->menuCursor) {
 						case 0: // Standard level
@@ -257,6 +281,7 @@ int main() {
 
 				case ALLEGRO_KEY_ESCAPE:
 					if (interfaceController->menuMode == 1) {
+						al_play_sample(menuBeepSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 						interfaceController->menuCursor = 0;
 						interfaceController->menuMode = 0;
 					}
@@ -267,18 +292,33 @@ int main() {
 			else if (interfaceController->gameState == 1) { // Controls screen
 				switch (event.keyboard.keycode) {
 				case ALLEGRO_KEY_ESCAPE:
+					al_play_sample(menuBeepSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 					interfaceController->gameState = 0;
 					break;
 				}
 			}
 			
 			else if (interfaceController->gameState == 2) { // Game screen
-				if(event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) interfaceController->isPaused = !interfaceController->isPaused;
-				if(event.keyboard.keycode == ALLEGRO_KEY_R) interfaceController->gameState = 0;
+				if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
+					al_play_sample(menuBeepSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+					interfaceController->isPaused = !interfaceController->isPaused;
+					(interfaceController->isPaused) ? al_set_sample_instance_gain(backgroundMusicInstance, 0.02) : al_set_sample_instance_gain(backgroundMusicInstance, 0.2);
+				}
+				if (event.keyboard.keycode == ALLEGRO_KEY_R && interfaceController->isPaused) {
+					al_play_sample(menuBeepSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+					al_set_sample_instance_gain(backgroundMusicInstance, 0.2);
+					interfaceController->gameState = 0;
+				}
 			}
 			
 			else if (interfaceController->gameState == 3) { // Game over screen
 				if (event.keyboard.keycode == ALLEGRO_KEY_ENTER) {
+					al_play_sample(menuBeepSound, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+					al_stop_sample_instance(winSample);
+					if (interfaceController->gameOverState == 1)
+						al_play_sample_instance(backgroundMusicInstance);
+					else if (interfaceController->gameOverState == 0)
+						al_set_sample_instance_gain(backgroundMusicInstance, 0.2);
 					interfaceController->gameState = 0;
 				}
 			}
@@ -293,6 +333,14 @@ int main() {
 	al_destroy_display(display);
 	al_destroy_sample(backgroundMusic);
 	al_destroy_sample(pointSound);
+	al_destroy_sample(menuBeepSound);
+	al_destroy_sample(loseSound);
+	al_destroy_sample(winSound);
+	al_destroy_sample_instance(backgroundMusicInstance);
+	al_destroy_sample_instance(winSample);
+	al_destroy_font(hugeFont);
+	al_destroy_font(mediumFont);
+	al_destroy_font(smallFont);
 	al_destroy_font(font);
 	al_destroy_timer(timer);
 	al_destroy_event_queue(event_queue);

@@ -69,5 +69,8 @@
   <ItemGroup>
     <Media Include="main-music.mp3" />
     <Media Include="point.mp3" />
+    <Media Include="beep.mp3" />
+    <Media Include="lose.mp3" />
+    <Media Include="win.mp3" />
   </ItemGroup>
 </Project>

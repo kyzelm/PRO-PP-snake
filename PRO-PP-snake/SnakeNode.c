@@ -1,9 +1,6 @@
 /*****************************************************************//**
  * \file   SnakeNode.c
  * \brief  Snake movement simulation and memory management functions
- * 
- * \author Damian Osiñski
- * \date   April 2024
  *********************************************************************/
 
 #include "SnakeNode.h";

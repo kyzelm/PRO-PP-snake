@@ -1,9 +1,6 @@
 /*****************************************************************//**
  * \file   InterfaceController.c
  * \brief  Main controller for the game states and menu
- * 
- * \author Damian Osiñski
- * \date   April 2024
  *********************************************************************/
 
 #include "InterfaceController.h"
